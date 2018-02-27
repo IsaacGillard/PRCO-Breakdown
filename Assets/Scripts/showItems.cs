@@ -101,13 +101,6 @@ public class showItems : MonoBehaviour
             showWires = false;
             showDuctTape = true;
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            showScrewdriver = false;
-            showCrowbar = false;
-            showWires = false;
-            showDuctTape = false;
-        }
 
     }
 }

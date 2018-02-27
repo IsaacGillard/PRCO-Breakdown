@@ -11,6 +11,8 @@ public class Raycast : MonoBehaviour {
     public Transform Player;
 
     public GameObject ScrewScreen;
+    public GameObject WiresScreen;
+    public GameObject CrowbarScreen;
 
     public GameObject screwdriver;
     public GameObject crowbar;
@@ -45,7 +47,34 @@ public class Raycast : MonoBehaviour {
 
                 }
             }
-        }
+            else if (hit.collider.CompareTag("Wires") && wires.activeInHierarchy )
+            {
+                raycastedObj = hit.collider.gameObject;
+                CrosshairActive();
+                Debug.Log("Found");
+
+                if (Input.GetKeyDown("e"))
+                {
+                    WiresScreen.SetActive(true);
+                    Player.GetComponent<FirstPersonController>().enabled = false;
+
+                }
+            }
+            else if (hit.collider.CompareTag("Crowbar") && crowbar.activeInHierarchy)
+            {
+                raycastedObj = hit.collider.gameObject;
+                CrosshairActive();
+                Debug.Log("Found");
+
+                if (Input.GetKeyDown("e"))
+                {
+                    CrowbarScreen.SetActive(true);
+                    Player.GetComponent<FirstPersonController>().enabled = false;
+                    
+
+                }
+            }
+        }         
         else
         {
             CrosshairNormal();
@@ -69,5 +98,19 @@ public class Raycast : MonoBehaviour {
         ScrewScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
         raycastedObj.SetActive(false);
+    }
+
+    public void WiresMiniGameCompleted()
+    {
+        WiresScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+        raycastedObj.SetActive(false);
+    }
+
+    public void CrowbarMiniGameCompleted()
+    {
+        CrowbarScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+        //raycastedObj.SetActive(false);
     }
 }

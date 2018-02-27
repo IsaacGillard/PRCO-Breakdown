@@ -9,8 +9,10 @@ public class ScrewMiniGame : MonoBehaviour {
     public Transform Player;
 
     public GameObject ScrewScreen;
+    public GameObject Panel;
     public Slider slider;
     private float progress = 0;
+    private int screwCount = 0;
     
     
 
@@ -34,12 +36,22 @@ public class ScrewMiniGame : MonoBehaviour {
         if (progress >= 1.0f)
         {
             Debug.Log("Completed");
+            progress = 0f;
+            slider.value = 0;
+            screwCount++;
             Player.GetComponent<Raycast>().ScrewMiniGameCompleted();
 
         }
         if(Input.GetKeyDown("e"))
         {
+            progress = 0f;
+            slider.value = 0;
             ScrewScreen.SetActive(false);
+        }
+
+        if (screwCount == 4)
+        {
+            Panel.SetActive(false);
         }
 
     }

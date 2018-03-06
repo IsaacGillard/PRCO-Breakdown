@@ -24,6 +24,8 @@ public class ScrewMiniGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        slider.value = progress;
+
         if (Input.GetKeyDown("f"))
         {
             Debug.Log("Triggered");
@@ -32,6 +34,16 @@ public class ScrewMiniGame : MonoBehaviour {
             slider.value = progress;
 
             Debug.Log(progress);
+        }
+        if(progress > 0)
+        {
+            progress -= Time.deltaTime/3;
+            if(progress <= 0.01f)
+            {
+                progress = 0f;
+                slider.value = 0;
+                Player.GetComponent<Raycast>().ScrewMiniGameFailed();
+            }
         }
         if (progress >= 1.0f)
         {
@@ -46,7 +58,7 @@ public class ScrewMiniGame : MonoBehaviour {
         {
             progress = 0f;
             slider.value = 0;
-            ScrewScreen.SetActive(false);
+            Player.GetComponent<Raycast>().ScrewMiniGameFailed();
         }
 
         if (screwCount == 4)

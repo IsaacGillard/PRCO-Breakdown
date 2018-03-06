@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class Raycast : MonoBehaviour {
@@ -28,6 +29,11 @@ public class Raycast : MonoBehaviour {
     [SerializeField]
     private Image uiCrosshair;
 
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         RaycastHit hit;
@@ -39,11 +45,14 @@ public class Raycast : MonoBehaviour {
             {  
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
+                raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
                 if (Input.GetKeyDown("e"))
                 {
+                    
                     ScrewScreen.SetActive(true);
                     Player.GetComponent<FirstPersonController>().enabled = false;
+                    raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
 
                 }
             }
@@ -51,10 +60,13 @@ public class Raycast : MonoBehaviour {
             {
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
-                Debug.Log("Found");
+                raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
+
+                
 
                 if (Input.GetKeyDown("e"))
                 {
+                    raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     WiresScreen.SetActive(true);
                     Player.GetComponent<FirstPersonController>().enabled = false;
 
@@ -64,10 +76,13 @@ public class Raycast : MonoBehaviour {
             {
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
-                Debug.Log("Found");
+                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
+
+                
 
                 if (Input.GetKeyDown("e"))
                 {
+                    //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     CrowbarScreen.SetActive(true);
                     Player.GetComponent<FirstPersonController>().enabled = false;
                     
@@ -78,6 +93,7 @@ public class Raycast : MonoBehaviour {
         else
         {
             CrosshairNormal();
+            //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
         }
     }
 
@@ -100,6 +116,12 @@ public class Raycast : MonoBehaviour {
         raycastedObj.SetActive(false);
     }
 
+    public void ScrewMiniGameFailed()
+    {
+        ScrewScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+    }
+
     public void WiresMiniGameCompleted()
     {
         WiresScreen.SetActive(false);
@@ -107,10 +129,21 @@ public class Raycast : MonoBehaviour {
         raycastedObj.SetActive(false);
     }
 
+    public void WiresMiniGameFailed()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void CrowbarMiniGameCompleted()
     {
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
-        //raycastedObj.SetActive(false);
+        raycastedObj.SetActive(false);
+    }
+    public void CrowbarMiniGameFailed()
+    {
+        CrowbarScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+        
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - Fixed Wires
   - Wires
   - Crowbar
+  - SliderOne
   layers:
   - Default
   - TransparentFX

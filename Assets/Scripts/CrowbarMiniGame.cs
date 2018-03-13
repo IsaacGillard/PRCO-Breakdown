@@ -16,6 +16,8 @@ public class CrowbarMiniGame : MonoBehaviour {
     public Slider timer;
     private float progress = 0;
     public GameObject CrowbarScreen;
+    public Slider[] sliders;
+    int arrayPos = 0;
 
     void Start()
     {
@@ -47,6 +49,11 @@ public class CrowbarMiniGame : MonoBehaviour {
             sliderTwo.gameObject.SetActive(false);
             sliderThree.gameObject.SetActive(false);
             Player.GetComponent<Raycast>().CrowbarMiniGameFailed();
+        }
+
+        for (int i = 0; i < sliders.Length; i++)
+        {
+
         }
 
         if (sliderOne.enabled)

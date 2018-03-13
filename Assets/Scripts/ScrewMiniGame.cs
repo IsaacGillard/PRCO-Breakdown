@@ -9,62 +9,60 @@ public class ScrewMiniGame : MonoBehaviour {
     public Transform Player;
 
     public GameObject ScrewScreen;
-    public GameObject Panel;
     public Slider slider;
     private float progress = 0;
-    private int screwCount = 0;
     
     
 
     // Use this for initialization
     void Start () {
-		
+        ResetSlider();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        slider.value = progress;
-
-        if (Input.GetKeyDown("f"))
+        if (ScrewScreen.activeInHierarchy)
         {
-            Debug.Log("Triggered");
-                
-            progress += 0.1f;
             slider.value = progress;
 
-            Debug.Log(progress);
-        }
-        if(progress > 0)
-        {
-            progress -= Time.deltaTime/3;
-            if(progress <= 0.01f)
+            if (Input.GetKeyDown("f"))
             {
-                progress = 0f;
-                slider.value = 0;
+                progress += 0.1f;
+                slider.value = progress;               
+            }
+            if (progress > 0)
+            {
+                progress -= Time.deltaTime / 3;
+                if (progress <= 0.01f)
+                {
+                    ResetSlider();
+                    Player.GetComponent<Raycast>().ScrewMiniGameFailed();
+                }
+            }
+            if (progress >= 1.0f)
+            {
+                Debug.Log("Completed");
+                ResetSlider();
+                Player.GetComponent<Raycast>().ScrewMiniGameCompleted();
+
+            }
+            if (Input.GetKeyDown("e"))
+            {
+                ResetSlider();
                 Player.GetComponent<Raycast>().ScrewMiniGameFailed();
             }
         }
-        if (progress >= 1.0f)
+        else
         {
-            Debug.Log("Completed");
-            progress = 0f;
-            slider.value = 0;
-            screwCount++;
-            Player.GetComponent<Raycast>().ScrewMiniGameCompleted();
 
         }
-        if(Input.GetKeyDown("e"))
-        {
-            progress = 0f;
-            slider.value = 0;
-            Player.GetComponent<Raycast>().ScrewMiniGameFailed();
-        }
-
-        if (screwCount == 4)
-        {
-            Panel.SetActive(false);
-        }
-
     }
+
+    void ResetSlider()
+    {
+        progress = 0f;
+        slider.value = 0;
+    }
+
 }

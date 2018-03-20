@@ -7,16 +7,15 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class ScrewMiniGame : MonoBehaviour {
 
     public Transform Player;
-
-    public GameObject ScrewScreen;
+    public Transform PlayerRaycast;
     public Slider slider;
     private float progress = 0;
-    
-    
+    public GameObject ScrewScreen;
+
 
     // Use this for initialization
     void Start () {
-        ResetSlider();
+        //ResetSlider();
 	}
 	
 	// Update is called once per frame
@@ -24,33 +23,38 @@ public class ScrewMiniGame : MonoBehaviour {
 
         if (ScrewScreen.activeInHierarchy)
         {
+            Player.GetComponent<FirstPersonController>().enabled = false;
             slider.value = progress;
 
             if (Input.GetKeyDown("f"))
             {
+                 
                 progress += 0.1f;
-                slider.value = progress;               
+                slider.value = progress;
+                Debug.Log(progress);
             }
             if (progress > 0)
             {
                 progress -= Time.deltaTime / 3;
                 if (progress <= 0.01f)
                 {
-                    ResetSlider();
-                    Player.GetComponent<Raycast>().ScrewMiniGameFailed();
+                    //ResetSlider();
+                    ScrewMiniGameFailed();
                 }
             }
             if (progress >= 1.0f)
             {
-                Debug.Log("Completed");
+
                 ResetSlider();
-                Player.GetComponent<Raycast>().ScrewMiniGameCompleted();
+                progress = 0.0f;
+                ScrewMiniGameCompleted();
+                
 
             }
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("r"))
             {
-                ResetSlider();
-                Player.GetComponent<Raycast>().ScrewMiniGameFailed();
+                //ResetSlider();
+                ScrewMiniGameFailed();
             }
         }
         else
@@ -59,10 +63,30 @@ public class ScrewMiniGame : MonoBehaviour {
         }
     }
 
-    void ResetSlider()
+    public void ResetSlider()
     {
+        Debug.Log("slider reset");
+        
         progress = 0f;
         slider.value = 0;
+        Debug.Log(slider.value);
     }
+
+    void ScrewMiniGameCompleted()
+    {
+        ScrewScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+        PlayerRaycast.GetComponent<Raycast>().RemoveObject();
+
+    }
+
+    void ScrewMiniGameFailed()
+    {
+        ScrewScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+        
+    }
+
+    
 
 }

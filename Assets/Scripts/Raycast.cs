@@ -15,6 +15,8 @@ public class Raycast : MonoBehaviour {
     public GameObject WiresScreen;
     public GameObject CrowbarScreen;
 
+    public GameObject Trigger;
+
     public GameObject screwdriver;
     public GameObject crowbar;
     public GameObject wires;
@@ -49,24 +51,24 @@ public class Raycast : MonoBehaviour {
 
                 if (Input.GetKeyDown("e"))
                 {
-                    
+                    Debug.Log("triggered");
                     ScrewScreen.SetActive(true);
-                    Player.GetComponent<FirstPersonController>().enabled = false;
-                    raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
-
+                    //Trigger.SetActive(true);
+                    raycastedObj.GetComponent<ScrewMiniGame>().ResetSlider();
+                    raycastedObj.GetComponent<ScrewMiniGame>();
+                    //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
+                    Debug.Log("finished loop");
                 }
             }
             else if (hit.collider.CompareTag("Wires") && wires.activeInHierarchy )
             {
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
-                raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
-
-                
+                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
                 if (Input.GetKeyDown("e"))
                 {
-                    raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
+                    //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     WiresScreen.SetActive(true);
                     Player.GetComponent<FirstPersonController>().enabled = false;
 
@@ -78,15 +80,12 @@ public class Raycast : MonoBehaviour {
                 CrosshairActive();
                 //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
-                
-
                 if (Input.GetKeyDown("e"))
                 {
+                    raycastedObj.GetComponent<CrowbarMiniGame>().ResetSlider();
                     //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     CrowbarScreen.SetActive(true);
                     Player.GetComponent<FirstPersonController>().enabled = false;
-                    
-
                 }
             }
         }         
@@ -107,43 +106,20 @@ public class Raycast : MonoBehaviour {
         uiCrosshair.color = Color.cyan;
     }
 
-
-
-    public void ScrewMiniGameCompleted()
+    public void CrowbarCompletion()
     {
-        ScrewScreen.SetActive(false);
-        Player.GetComponent<FirstPersonController>().enabled = true;
+        raycastedObj.GetComponent<CrowbarMiniGameCompletion>().Completion();
+    }
+
+    public void WiresCompletion()
+    {
+        raycastedObj.GetComponent<WiresCompletion>().Completion();
+    }
+
+    public void RemoveObject()
+    {
         raycastedObj.SetActive(false);
     }
 
-    public void ScrewMiniGameFailed()
-    {
-        ScrewScreen.SetActive(false);
-        Player.GetComponent<FirstPersonController>().enabled = true;
-    }
-
-    public void WiresMiniGameCompleted()
-    {
-        WiresScreen.SetActive(false);
-        Player.GetComponent<FirstPersonController>().enabled = true;
-        raycastedObj.SetActive(false);
-    }
-
-    public void WiresMiniGameFailed()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void CrowbarMiniGameCompleted()
-    {
-        CrowbarScreen.SetActive(false);
-        Player.GetComponent<FirstPersonController>().enabled = true;
-        raycastedObj.SetActive(false);
-    }
-    public void CrowbarMiniGameFailed()
-    {
-        CrowbarScreen.SetActive(false);
-        Player.GetComponent<FirstPersonController>().enabled = true;
-        
-    }
+    
 }

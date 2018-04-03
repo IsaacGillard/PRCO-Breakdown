@@ -17,10 +17,14 @@ public class showItems : MonoBehaviour
     [SerializeField]
     private GameObject ductTape;
 
+    [SerializeField]
+    private GameObject robotController;
+
     public bool showScrewdriver;
     public bool showCrowbar;
     public bool showWires;
     public bool showDuctTape;
+    public bool showController;
 
     public int activeItem = 1;
 
@@ -31,7 +35,7 @@ public class showItems : MonoBehaviour
         showCrowbar = false;
         showWires = false;
         showDuctTape = false;
-
+        showController = false;
     }
 	
 	// Update is called once per frame
@@ -73,12 +77,22 @@ public class showItems : MonoBehaviour
         {
             ductTape.SetActive(false);
         }
+        if (showController == true)
+        {
+            robotController.SetActive(true);
+            activeItem = 5;
+        }
+        if (showController == false)
+        {
+            robotController.SetActive(false);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1) && showScrewdriver == false)
         {
             showScrewdriver = true;
             showCrowbar = false;
             showWires = false;
             showDuctTape = false;
+            showController = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && showCrowbar == false)
         {
@@ -86,6 +100,7 @@ public class showItems : MonoBehaviour
             showCrowbar = true;
             showWires = false;
             showDuctTape = false;
+            showController = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && showWires == false)
         {
@@ -93,6 +108,7 @@ public class showItems : MonoBehaviour
             showCrowbar = false;
             showWires = true;
             showDuctTape = false;
+            showController = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && showDuctTape == false)
         {
@@ -100,6 +116,15 @@ public class showItems : MonoBehaviour
             showCrowbar = false;
             showWires = false;
             showDuctTape = true;
+            showController = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5) && showController == false)
+        {
+            showScrewdriver = false;
+            showCrowbar = false;
+            showWires = false;
+            showDuctTape = false;
+            showController = true;
         }
 
     }

@@ -11,6 +11,8 @@ public class Raycast : MonoBehaviour {
 
     public Transform Player;
 
+    public GameObject eventManager;
+
     public GameObject ScrewScreen;
     public GameObject WiresScreen;
     public GameObject CrowbarScreen;
@@ -21,6 +23,7 @@ public class Raycast : MonoBehaviour {
     public GameObject crowbar;
     public GameObject wires;
     public GameObject ductTape;
+    public GameObject robotController;
 
     [SerializeField]
     private int rayLength = 1;
@@ -55,7 +58,7 @@ public class Raycast : MonoBehaviour {
                     ScrewScreen.SetActive(true);
                     //Trigger.SetActive(true);
                     raycastedObj.GetComponent<ScrewMiniGame>().ResetSlider();
-                    raycastedObj.GetComponent<ScrewMiniGame>();
+                    //raycastedObj.GetComponent<ScrewMiniGame>().ScrewGame();
                     //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     Debug.Log("finished loop");
                 }
@@ -85,7 +88,19 @@ public class Raycast : MonoBehaviour {
                     raycastedObj.GetComponent<CrowbarMiniGame>().ResetSlider();
                     //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     CrowbarScreen.SetActive(true);
+                    CrowbarScreen.GetComponent<CrowbarTimer>().StartTimer();
                     Player.GetComponent<FirstPersonController>().enabled = false;
+                }
+            }
+            else if (hit.collider.CompareTag("RobotControl") && robotController.activeInHierarchy)
+            {
+                raycastedObj = hit.collider.gameObject;
+                CrosshairActive();
+                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
+
+                if (Input.GetKeyDown("e"))
+                {
+                    eventManager.GetComponent<PlayerSwap>().SwapPlayer();
                 }
             }
         }         

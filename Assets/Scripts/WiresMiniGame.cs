@@ -61,7 +61,7 @@ public class WiresMiniGame : MonoBehaviour {
         }
         else if (brokenWire == 3)
         {
-            if (Input.GetKeyDown("b") || Input.GetKeyDown("r") || Input.GetKeyDown("g"))
+            if (Input.GetKeyDown("b") || Input.GetKeyDown("r") || Input.GetKeyDown("g")) 
             {
                 WiresMiniGameFailed();
             }

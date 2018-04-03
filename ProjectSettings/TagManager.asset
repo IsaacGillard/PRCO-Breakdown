@@ -11,6 +11,8 @@ TagManager:
   - Wires
   - Crowbar
   - SliderOne
+  - RobotControl
+  - Robot
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - 
   - Interact
-  - 
+  - RobotInteract
   - 
   - 
   - 

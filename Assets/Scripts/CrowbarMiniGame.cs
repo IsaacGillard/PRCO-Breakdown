@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
+
 public class CrowbarMiniGame : MonoBehaviour {
 
     [SerializeField]
@@ -28,8 +29,8 @@ public class CrowbarMiniGame : MonoBehaviour {
         sliderTwo.gameObject.SetActive(false);
         sliderThree.gameObject.SetActive(false);
 
-        timer.value = 5;
-        timeLeft = 5;
+        //timer.value = 5;
+        //timeLeft = 5;
     }
 
     // Update is called once per frame
@@ -37,20 +38,17 @@ public class CrowbarMiniGame : MonoBehaviour {
 
         if (CrowbarScreen.activeInHierarchy)
         {
-            if (timeLeft > 0)
-            {
-                timeLeft -= Time.deltaTime;
-                timer.value = timeLeft;
-            }
-            else
-            {
-                timer.value = 5;
-                timeLeft = 5;
-                sliderOne.gameObject.SetActive(true);
-                sliderTwo.gameObject.SetActive(false);
-                sliderThree.gameObject.SetActive(false);
-                CrowbarMiniGameFailed();
-            }
+            //if (timeLeft > 0 )
+            //{
+            //    timeLeft -= Time.deltaTime;
+            //    timer.value = timeLeft;
+            //    Debug.Log("timer =" + timeLeft);
+            //    Debug.Log("slider =" + timer.value);
+            //}
+            //else
+            //{
+            //    CrowbarMiniGameFailed();
+            //}
 
             if (sliderOne.enabled)
             {
@@ -95,6 +93,7 @@ public class CrowbarMiniGame : MonoBehaviour {
 
     public void CrowbarMiniGameCompleted()
     {
+        CrowbarScreen.GetComponent<CrowbarTimer>().Reset();
         progress = 0.0f;
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
@@ -106,6 +105,7 @@ public class CrowbarMiniGame : MonoBehaviour {
     }
     public void CrowbarMiniGameFailed()
     {
+
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
 
@@ -118,6 +118,7 @@ public class CrowbarMiniGame : MonoBehaviour {
         sliderTwo.value = 0;
         sliderThree.value = 0;
         timer.value = 5;
+        timeLeft = 5;
         sliderOne.gameObject.SetActive(true);
         sliderTwo.gameObject.SetActive(false);
         sliderThree.gameObject.SetActive(false);

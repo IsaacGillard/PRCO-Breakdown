@@ -11,6 +11,7 @@ public class ScrewMiniGame : MonoBehaviour {
     public Slider slider;
     private float progress = 0;
     public GameObject ScrewScreen;
+    private int alternator = 0;
 
 
     // Use this for initialization
@@ -23,33 +24,41 @@ public class ScrewMiniGame : MonoBehaviour {
 
         if (ScrewScreen.activeInHierarchy)
         {
-            Player.GetComponent<FirstPersonController>().enabled = false;
-            slider.value = progress;
+            //Player.GetComponent<FirstPersonController>().enabled = false;
+            //slider.value = progress;
 
             if (Input.GetKeyDown("f"))
             {
-                 
-                progress += 0.1f;
-                slider.value = progress;
-                Debug.Log(progress);
-            }
-            if (progress > 0)
-            {
-                progress -= Time.deltaTime / 3;
-                if (progress <= 0.01f)
+                if (alternator == 0)
                 {
-                    //ResetSlider();
+                    alternator = 1;
+                    progress += 0.1f;
+                    slider.value = progress;
+                    Debug.Log(progress);
+                }
+                else if (alternator == 1)
+                {
                     ScrewMiniGameFailed();
                 }
             }
-            if (progress >= 1.0f)
+            
+            if (Input.GetKeyDown("h"))
             {
-
-                ResetSlider();
-                progress = 0.0f;
+                if (alternator == 1)
+                {
+                    alternator = 0;
+                    progress += 0.1f;
+                    slider.value = progress;
+                    Debug.Log(progress);
+                }
+                else if (alternator == 0)
+                {
+                    ScrewMiniGameFailed();
+                }
+            }
+            if (progress >= 3)
+            {
                 ScrewMiniGameCompleted();
-                
-
             }
             if (Input.GetKeyDown("r"))
             {
@@ -62,6 +71,48 @@ public class ScrewMiniGame : MonoBehaviour {
 
         }
     }
+
+    //public void ScrewGame()
+    //{
+        
+    //        Player.GetComponent<FirstPersonController>().enabled = false;
+    //        //slider.value = progress;
+
+    //        if (Input.GetKeyDown("f") && alternator == 0)
+    //        {
+    //            alternator = 1;
+    //            progress += 0.1f;
+    //            slider.value = progress;
+    //            Debug.Log("1");
+    //        }
+    //        if (Input.GetKeyDown("f") && alternator == 1)
+    //        {
+    //            ResetSlider();
+    //        Debug.Log("2");
+    //    }
+    //        if (Input.GetKeyDown("g") && alternator == 1)
+    //        {
+    //            alternator = 0;
+    //            progress += 0.1f;
+    //            slider.value = progress;
+    //            Debug.Log(progress);
+    //        Debug.Log("3");
+    //    }
+    //        if (Input.GetKeyDown("g") && alternator == 0)
+    //        {
+    //            ResetSlider();
+    //        Debug.Log("4");
+    //    }
+    //        if (progress >= 1)
+    //        {
+    //            ScrewMiniGameCompleted();
+    //        }
+    //        if (Input.GetKeyDown("r"))
+    //        {
+    //            //ResetSlider();
+    //            ScrewMiniGameFailed();
+    //        }
+    //}
 
     public void ResetSlider()
     {

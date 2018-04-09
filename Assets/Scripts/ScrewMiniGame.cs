@@ -24,8 +24,6 @@ public class ScrewMiniGame : MonoBehaviour {
 
         if (ScrewScreen.activeInHierarchy)
         {
-            //Player.GetComponent<FirstPersonController>().enabled = false;
-            //slider.value = progress;
 
             if (Input.GetKeyDown("f"))
             {
@@ -72,53 +70,11 @@ public class ScrewMiniGame : MonoBehaviour {
         }
     }
 
-    //public void ScrewGame()
-    //{
-        
-    //        Player.GetComponent<FirstPersonController>().enabled = false;
-    //        //slider.value = progress;
-
-    //        if (Input.GetKeyDown("f") && alternator == 0)
-    //        {
-    //            alternator = 1;
-    //            progress += 0.1f;
-    //            slider.value = progress;
-    //            Debug.Log("1");
-    //        }
-    //        if (Input.GetKeyDown("f") && alternator == 1)
-    //        {
-    //            ResetSlider();
-    //        Debug.Log("2");
-    //    }
-    //        if (Input.GetKeyDown("g") && alternator == 1)
-    //        {
-    //            alternator = 0;
-    //            progress += 0.1f;
-    //            slider.value = progress;
-    //            Debug.Log(progress);
-    //        Debug.Log("3");
-    //    }
-    //        if (Input.GetKeyDown("g") && alternator == 0)
-    //        {
-    //            ResetSlider();
-    //        Debug.Log("4");
-    //    }
-    //        if (progress >= 1)
-    //        {
-    //            ScrewMiniGameCompleted();
-    //        }
-    //        if (Input.GetKeyDown("r"))
-    //        {
-    //            //ResetSlider();
-    //            ScrewMiniGameFailed();
-    //        }
-    //}
-
     public void ResetSlider()
     {
         Debug.Log("slider reset");
-        
-        progress = 0f;
+        alternator = 0;
+        progress = 0;
         slider.value = 0;
         Debug.Log(slider.value);
     }

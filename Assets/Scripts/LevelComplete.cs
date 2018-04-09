@@ -5,15 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject ElevatorLeftDoor;
+    public GameObject ElevatorRightDoor;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,5 +14,11 @@ public class LevelComplete : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+
+    public void OpenElevator()
+    {
+        ElevatorLeftDoor.SetActive(false);
+        ElevatorRightDoor.SetActive(false);
     }
 }

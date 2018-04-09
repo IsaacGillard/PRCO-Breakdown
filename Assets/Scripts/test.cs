@@ -34,7 +34,6 @@ public class test : MonoBehaviour {
             }
             else if (alternator == 1)
             {
-                ScrewMiniGameFailed();
                 ResetSlider();
             }
         }
@@ -50,7 +49,6 @@ public class test : MonoBehaviour {
             }
             else if (alternator == 0)
             {
-                ScrewMiniGameFailed();
                 ResetSlider();
             }
         }
@@ -68,7 +66,7 @@ public class test : MonoBehaviour {
     public void ResetSlider()
     {
         Debug.Log("slider reset");
-
+        alternator = 0;
         progress = 0f;
         slider.value = 0;
         Debug.Log(slider.value);

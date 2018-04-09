@@ -13,6 +13,9 @@ TagManager:
   - SliderOne
   - RobotControl
   - Robot
+  - tube
+  - RobotCamera
+  - Monitor
   layers:
   - Default
   - TransparentFX

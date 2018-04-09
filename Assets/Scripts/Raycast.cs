@@ -16,6 +16,7 @@ public class Raycast : MonoBehaviour {
     public GameObject ScrewScreen;
     public GameObject WiresScreen;
     public GameObject CrowbarScreen;
+    public GameObject PowerScreen;
 
     public GameObject Trigger;
 
@@ -34,6 +35,8 @@ public class Raycast : MonoBehaviour {
     [SerializeField]
     private Image uiCrosshair;
 
+    public int brokenWire;
+
     private void Start()
     {
         
@@ -50,16 +53,13 @@ public class Raycast : MonoBehaviour {
             {  
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
-                raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
+                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
                 if (Input.GetKeyDown("e"))
                 {
                     Debug.Log("triggered");
                     ScrewScreen.SetActive(true);
-                    //Trigger.SetActive(true);
-                    raycastedObj.GetComponent<ScrewMiniGame>().ResetSlider();
-                    //raycastedObj.GetComponent<ScrewMiniGame>().ScrewGame();
-                    //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
+                    ScrewScreen.GetComponent<test>().ResetSlider();
                     Debug.Log("finished loop");
                 }
             }
@@ -71,6 +71,7 @@ public class Raycast : MonoBehaviour {
 
                 if (Input.GetKeyDown("e"))
                 {
+                    brokenWire = raycastedObj.GetComponent<WireStats>().BrokenWire;
                     //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
                     WiresScreen.SetActive(true);
                     Player.GetComponent<FirstPersonController>().enabled = false;
@@ -103,6 +104,17 @@ public class Raycast : MonoBehaviour {
                     eventManager.GetComponent<PlayerSwap>().SwapPlayer();
                 }
             }
+            else if (hit.collider.CompareTag("Monitor"))
+            {
+                raycastedObj = hit.collider.gameObject;
+                CrosshairActive();
+
+                if (Input.GetKeyDown("e"))
+                {
+                    Player.GetComponent<FirstPersonController>().enabled = false;
+                    PowerScreen.SetActive(true);
+                }
+            }
         }         
         else
         {
@@ -116,7 +128,7 @@ public class Raycast : MonoBehaviour {
         uiCrosshair.color = Color.green;
     }
 
-    void CrosshairNormal()
+     void CrosshairNormal()
     {
         uiCrosshair.color = Color.cyan;
     }
@@ -126,7 +138,7 @@ public class Raycast : MonoBehaviour {
         raycastedObj.GetComponent<CrowbarMiniGameCompletion>().Completion();
     }
 
-    public void WiresCompletion()
+    public void WiresSwitch()
     {
         raycastedObj.GetComponent<WiresCompletion>().Completion();
     }

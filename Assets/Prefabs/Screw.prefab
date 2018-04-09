@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23656638841155304}
   - component: {fileID: 65231260306500796}
   - component: {fileID: 114338222060849978}
-  - component: {fileID: 114264874371003656}
   m_Layer: 8
   m_Name: Screw
   m_TagString: Screw
@@ -97,21 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.019999998, z: 0.1142501}
   m_Center: {x: 0, y: 0, z: -0.047125053}
---- !u!114 &114264874371003656
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1132137144777614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80313293caf5884a9b5de448352bb7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  slider: {fileID: 0}
-  screwScreen: {fileID: 0}
-  Screw: {fileID: 1132137144777614}
 --- !u!114 &114338222060849978
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,20 +10,28 @@ public class Raycast : MonoBehaviour {
     public GameObject raycastedObj;
 
     public Transform Player;
+    public Transform PlayerRaycast;
 
     public GameObject eventManager;
+
+    public GameObject[] equipmentHints;
+
+    public GameObject UserInterface;
+
+    public GameObject ScrewScreenCamera;
 
     public GameObject ScrewScreen;
     public GameObject WiresScreen;
     public GameObject CrowbarScreen;
     public GameObject PowerScreen;
+    public GameObject EngineerUSBScreen;
 
     public GameObject Trigger;
 
     public GameObject screwdriver;
     public GameObject crowbar;
     public GameObject wires;
-    public GameObject ductTape;
+    public GameObject engineerUSB;
     public GameObject robotController;
 
     [SerializeField]
@@ -37,9 +45,11 @@ public class Raycast : MonoBehaviour {
 
     public int brokenWire;
 
+    public int monitorReference;
+
     private void Start()
     {
-        
+        RemoveHints();
     }
 
     void Update()
@@ -49,61 +59,92 @@ public class Raycast : MonoBehaviour {
 
         if(Physics.Raycast(transform.position, fwd, out hit, rayLength, LayerMaskInteract.value))
         {
-            if(hit.collider.CompareTag("Screw") && screwdriver.activeInHierarchy)
-            {  
-                raycastedObj = hit.collider.gameObject;
-                CrosshairActive();
-                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
-
-                if (Input.GetKeyDown("e"))
-                {
-                    Debug.Log("triggered");
-                    ScrewScreen.SetActive(true);
-                    ScrewScreen.GetComponent<test>().ResetSlider();
-                    Debug.Log("finished loop");
-                }
-            }
-            else if (hit.collider.CompareTag("Wires") && wires.activeInHierarchy )
+            if(hit.collider.CompareTag("Screw"))
             {
-                raycastedObj = hit.collider.gameObject;
+                equipmentHints[0].SetActive(true);
                 CrosshairActive();
+                if (screwdriver.activeInHierarchy)
+                {
+                    if (Input.GetKeyDown("e"))
+                    {
+                        
+                        UserInterface.SetActive(false);
+                        raycastedObj = hit.collider.gameObject;
+                        ScrewScreen.SetActive(true);
+                    }
+                }
+                
+                
                 //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
-                if (Input.GetKeyDown("e"))
-                {
-                    brokenWire = raycastedObj.GetComponent<WireStats>().BrokenWire;
-                    //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
-                    WiresScreen.SetActive(true);
-                    Player.GetComponent<FirstPersonController>().enabled = false;
-
-                }
+                
             }
-            else if (hit.collider.CompareTag("Crowbar") && crowbar.activeInHierarchy)
+            else if (hit.collider.CompareTag("Crowbar"))
             {
-                raycastedObj = hit.collider.gameObject;
+                equipmentHints[1].SetActive(true);              
                 CrosshairActive();
-                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
-                if (Input.GetKeyDown("e"))
+                if (crowbar.activeInHierarchy)
                 {
-                    raycastedObj.GetComponent<CrowbarMiniGame>().ResetSlider();
-                    //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
-                    CrowbarScreen.SetActive(true);
-                    CrowbarScreen.GetComponent<CrowbarTimer>().StartTimer();
-                    Player.GetComponent<FirstPersonController>().enabled = false;
+                    raycastedObj = hit.collider.gameObject;
+                    if (Input.GetKeyDown("e"))
+                    {
+                        UserInterface.SetActive(false);
+                        CrowbarScreen.SetActive(true);
+                    }
+                }
+
+                
+            }
+            else if (hit.collider.CompareTag("Wires"))
+            {
+                equipmentHints[2].SetActive(true);
+                
+                CrosshairActive();
+
+                if (wires.activeInHierarchy)
+                {
+                    raycastedObj = hit.collider.gameObject;
+                    if (Input.GetKeyDown("e"))
+                    {
+                        UserInterface.SetActive(false);
+                        brokenWire = raycastedObj.GetComponent<WireStats>().BrokenWire;
+                        WiresScreen.SetActive(true);
+
+                    }
+                }   
+            }
+            else if (hit.collider.CompareTag("USB"))
+            {
+                equipmentHints[2].SetActive(true);
+
+                CrosshairActive();
+
+                if (engineerUSB.activeInHierarchy)
+                {
+                    raycastedObj = hit.collider.gameObject;
+                    if (Input.GetKeyDown("e"))
+                    {
+                        UserInterface.SetActive(false);
+                        monitorReference = raycastedObj.GetComponent<USBStats>().MonitorReferenceNumber;
+                        Debug.Log(monitorReference);
+                        EngineerUSBScreen.SetActive(true);
+
+                    }
                 }
             }
+
             else if (hit.collider.CompareTag("RobotControl") && robotController.activeInHierarchy)
             {
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
-                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
 
                 if (Input.GetKeyDown("e"))
                 {
                     eventManager.GetComponent<PlayerSwap>().SwapPlayer();
                 }
             }
+
             else if (hit.collider.CompareTag("Monitor"))
             {
                 raycastedObj = hit.collider.gameObject;
@@ -118,8 +159,17 @@ public class Raycast : MonoBehaviour {
         }         
         else
         {
+            UserInterface.SetActive(true);
+            RemoveHints();
             CrosshairNormal();
-            //raycastedObj.GetComponent<RaycastMaterialChange>().ResetMaterial(raycastedObj);
+        }
+    }
+
+    void RemoveHints()
+    {
+        foreach (GameObject i in equipmentHints)
+        {
+            i.SetActive(false);
         }
     }
 

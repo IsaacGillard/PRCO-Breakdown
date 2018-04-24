@@ -6,51 +6,40 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 
 public class CrowbarMiniGame : MonoBehaviour {
-
-    [SerializeField]
-    private int ObjectType = 0;
-
-    float timeLeft;
-
-    
-
     public Transform Player;
     public GameObject PlayerRaycast;
     public Slider sliderOne;
     public Slider sliderTwo;
     public Slider sliderThree;
     public Slider timer;
+    private float timerProgress = 5;
     private float progress = 0;
     public GameObject CrowbarScreen;
+    public GameObject UserInterface;
 
-    void Start()
+
+    private void OnEnable()
     {
-        sliderOne.gameObject.SetActive(true);
-        sliderTwo.gameObject.SetActive(false);
-        sliderThree.gameObject.SetActive(false);
-
-        //timer.value = 5;
-        //timeLeft = 5;
+        Reset();      
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (CrowbarScreen.activeInHierarchy)
-        {
-            //if (timeLeft > 0 )
-            //{
-            //    timeLeft -= Time.deltaTime;
-            //    timer.value = timeLeft;
-            //    Debug.Log("timer =" + timeLeft);
-            //    Debug.Log("slider =" + timer.value);
-            //}
-            //else
-            //{
-            //    CrowbarMiniGameFailed();
-            //}
+        Player.GetComponent<FirstPersonController>().enabled = false;
 
-            if (sliderOne.enabled)
+        if (timerProgress >= 0.1)
+        {
+            timerProgress -= Time.deltaTime;
+            timer.value = timerProgress;
+        }
+        else
+        {
+            CrowbarMiniGameFailed();
+        }
+
+
+        if (sliderOne.enabled)
             {
                 progress = sliderOne.value;
 
@@ -77,8 +66,6 @@ public class CrowbarMiniGame : MonoBehaviour {
 
                 if (progress >= 1.0f)
                 {
-                    
-                    //Target.SetActive(false);
                     CrowbarMiniGameCompleted();
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
@@ -88,37 +75,31 @@ public class CrowbarMiniGame : MonoBehaviour {
             {
 
             }
-        }       
+             
     }
 
     public void CrowbarMiniGameCompleted()
     {
-        CrowbarScreen.GetComponent<CrowbarTimer>().Reset();
-        progress = 0.0f;
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
         PlayerRaycast.GetComponent<Raycast>().CrowbarCompletion();
-        
-        
-
-
     }
+
     public void CrowbarMiniGameFailed()
     {
-
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
-
+        UserInterface.GetComponent<PlayerLives>().ReduceLife();
     }
 
-    public void ResetSlider()
+    public void Reset()
     {
         progress = 0f;
         sliderOne.value = 0;
         sliderTwo.value = 0;
         sliderThree.value = 0;
         timer.value = 5;
-        timeLeft = 5;
+        timerProgress = 5;
         sliderOne.gameObject.SetActive(true);
         sliderTwo.gameObject.SetActive(false);
         sliderThree.gameObject.SetActive(false);

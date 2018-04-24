@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -11,6 +12,9 @@ public class WiresMiniGame : MonoBehaviour {
     public GameObject WiresScreen;
     public Transform Player;
     public GameObject PlayerRaycast;
+    public GameObject UserInterface;
+    public Slider timer;
+    private float timerProgress = 5;
 
     [SerializeField]
     private int brokenWire = 0;
@@ -20,11 +24,27 @@ public class WiresMiniGame : MonoBehaviour {
         
         Debug.Log("Start | brokenwire: " + brokenWire.ToString());
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        Player.GetComponent<FirstPersonController>().enabled = false;
+        Reset();
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         brokenWire = PlayerRaycast.GetComponent<Raycast>().brokenWire;
+
+        if (timerProgress >= 0.1)
+        {
+            timerProgress -= Time.deltaTime;
+            timer.value = timerProgress;
+        }
+        else
+        {
+            WiresMiniGameFailed();
+        }
 
         if (Input.GetKeyDown("r"))
         {
@@ -62,53 +82,12 @@ public class WiresMiniGame : MonoBehaviour {
                 WiresMiniGameFailed();
             }
         }
+    }
 
-
-        //    if ( brokenWire == 0)
-        //{
-        //    if (Input.GetKeyDown("r"))
-        //    {               
-        //        WiresMiniGameCompleted();
-                
-        //    }
-        //    if (Input.GetKeyDown("g") || Input.GetKeyDown("b"))
-        //    {
-        //        WiresMiniGameFailed();
-        //    }
-        //}
-        //else if (brokenWire == 1)
-        //{
-        //    if (Input.GetKeyDown("g"))
-        //    {
-        //        WiresMiniGameCompleted();
-                
-        //    }
-        //    if (Input.GetKeyDown("r") || Input.GetKeyDown("b"))
-        //    {
-        //        WiresMiniGameFailed();
-        //    }
-        //}
-        //else if (brokenWire == 2)
-        //{
-        //    if (Input.GetKeyDown("b"))
-        //    {
-        //        WiresMiniGameCompleted();
-                
-        //    }
-        //    if (Input.GetKeyDown("r") || Input.GetKeyDown("g"))
-        //    {
-        //        WiresMiniGameFailed();
-        //    }
-        //}
-        //else if (brokenWire == 3)
-        //{
-        //    if (Input.GetKeyDown("b") || Input.GetKeyDown("r") || Input.GetKeyDown("g")) 
-        //    {
-        //        WiresMiniGameFailed();
-        //    }
-            
-        //}
-        
+    private void Reset()
+    {
+        timerProgress = 5;
+        timer.value = 5;
     }
 
     public void WiresMiniGameCompleted()
@@ -121,6 +100,8 @@ public class WiresMiniGame : MonoBehaviour {
 
     public void WiresMiniGameFailed()
     {
-        SceneManager.LoadScene(0);
+        WiresScreen.SetActive(false);
+        Player.GetComponent<FirstPersonController>().enabled = true;
+        UserInterface.GetComponent<PlayerLives>().ReduceLife();
     }
 }

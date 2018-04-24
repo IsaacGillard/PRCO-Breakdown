@@ -16,6 +16,7 @@ TagManager:
   - tube
   - RobotCamera
   - Monitor
+  - USB
   layers:
   - Default
   - TransparentFX

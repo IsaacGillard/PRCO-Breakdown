@@ -9,74 +9,90 @@ public class ScrewMiniGame : MonoBehaviour {
     public Transform Player;
     public Transform PlayerRaycast;
     public Slider slider;
+    public Slider timer;
     private float progress = 0;
+    private float timerProgress = 5;
     public GameObject ScrewScreen;
     private int alternator = 0;
-
+    public GameObject UserInterface;
 
     // Use this for initialization
-    void Start () {
-        //ResetSlider();
+    void OnEnable ()
+    {
+        ResetSlider();
+        ResetTimer();
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (ScrewScreen.activeInHierarchy)
-        {
+        Player.GetComponent<FirstPersonController>().enabled = false;
 
-            if (Input.GetKeyDown("f"))
-            {
-                if (alternator == 0)
-                {
-                    alternator = 1;
-                    progress += 0.1f;
-                    slider.value = progress;
-                    Debug.Log(progress);
-                }
-                else if (alternator == 1)
-                {
-                    ScrewMiniGameFailed();
-                }
-            }
-            
-            if (Input.GetKeyDown("h"))
-            {
-                if (alternator == 1)
-                {
-                    alternator = 0;
-                    progress += 0.1f;
-                    slider.value = progress;
-                    Debug.Log(progress);
-                }
-                else if (alternator == 0)
-                {
-                    ScrewMiniGameFailed();
-                }
-            }
-            if (progress >= 3)
-            {
-                ScrewMiniGameCompleted();
-            }
-            if (Input.GetKeyDown("r"))
-            {
-                //ResetSlider();
-                ScrewMiniGameFailed();
-            }
+        if (timerProgress >= 0.1)
+        {
+            timerProgress -= Time.deltaTime;
+            timer.value = timerProgress;
         }
         else
         {
+            ScrewMiniGameFailed();
+        }
 
+        if (Input.GetKeyDown("f"))
+        {
+            if (alternator == 0)
+            {
+                alternator = 1;
+                progress += 0.1f;
+                slider.value = progress;
+                Debug.Log(progress);
+            }
+            else if (alternator == 1)
+            {
+                ResetSlider();
+            }
+        }
+
+        if (Input.GetKeyDown("h"))
+        {
+            if (alternator == 1)
+            {
+                alternator = 0;
+                progress += 0.1f;
+                slider.value = progress;
+                Debug.Log(progress);
+            }
+            else if (alternator == 0)
+            {
+                ResetSlider();
+            }
+        }
+        if (progress >= 3)
+        {
+            ScrewMiniGameCompleted();
+            ResetSlider();
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            ResetSlider();
+            ScrewMiniGameFailed();
         }
     }
-
     public void ResetSlider()
     {
         Debug.Log("slider reset");
         alternator = 0;
-        progress = 0;
+        progress = 0f;
         slider.value = 0;
+
         Debug.Log(slider.value);
+    }
+
+    public void ResetTimer()
+    {
+        timer.value = 5;
+        timerProgress = 5;
     }
 
     void ScrewMiniGameCompleted()
@@ -84,6 +100,7 @@ public class ScrewMiniGame : MonoBehaviour {
         ScrewScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
         PlayerRaycast.GetComponent<Raycast>().RemoveObject();
+        
 
     }
 
@@ -91,9 +108,12 @@ public class ScrewMiniGame : MonoBehaviour {
     {
         ScrewScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
+        UserInterface.GetComponent<PlayerLives>().ReduceLife();
         
+
     }
 
-    
-
 }
+
+
+

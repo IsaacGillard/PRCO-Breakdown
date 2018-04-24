@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class WireStats : MonoBehaviour {
 
     public int BrokenWire;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

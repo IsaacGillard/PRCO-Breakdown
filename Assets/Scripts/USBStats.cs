@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour {
+public class USBStats : MonoBehaviour {
+
+    public int MonitorReferenceNumber;
 
 	// Use this for initialization
 	void Start () {

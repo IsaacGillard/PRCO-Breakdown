@@ -7,11 +7,14 @@ using TMPro;
 public class RobotBodyMonitor : MonoBehaviour {
 
     [SerializeField]
+    private GameObject EventSystem;
+
+    [SerializeField]
     private int[] ArmLength;
 
     private int currentArmLength = 0;
 
-    public int CommitedArmLength;
+    private int CommitedArmLength;
 
     public TextMeshProUGUI armLengthValue;
 
@@ -50,5 +53,11 @@ public class RobotBodyMonitor : MonoBehaviour {
         {
             currentArmLength = 2;
         }
+    }
+
+    public void CommitBody()
+    {
+        CommitedArmLength = ArmLength[currentArmLength];
+        EventSystem.GetComponent<RobotSpawner>().SpawnBody(CommitedArmLength);
     }
 }

@@ -31,20 +31,23 @@ public class LevelThreePower : MonoBehaviour {
             terminalsWithPower += 1;
             TerminalPowerOn();
             MonitorScreenOn(terminalTwoScreen);
+            terminalTwoScreen.tag = "USB";
         }
         if (terminalThree.activeInHierarchy)
         {
             terminalsWithPower += 1;
             MonitorScreenOn(terminalThreeScreen);
+            terminalThreeScreen.tag = "USB";
         }
         if (terminalFour.activeInHierarchy)
         {
             terminalsWithPower += 1;
             MonitorScreenOn(terminalFourScreen);
+            terminalFourScreen.tag = "USB";
         }
         if (terminalsWithPower == 4)
         {
-            Debug.Log("Huzzah");
+
         }
 
     }

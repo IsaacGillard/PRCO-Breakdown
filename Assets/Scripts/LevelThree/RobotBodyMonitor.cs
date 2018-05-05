@@ -18,6 +18,8 @@ public class RobotBodyMonitor : MonoBehaviour {
 
     public TextMeshProUGUI armLengthValue;
 
+    private bool noRobotSpawned = true;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -59,5 +61,24 @@ public class RobotBodyMonitor : MonoBehaviour {
     {
         CommitedArmLength = ArmLength[currentArmLength];
         EventSystem.GetComponent<RobotSpawner>().SpawnBody(CommitedArmLength);
+    }
+
+    public void CheckForActiveRobot()
+    {
+        for (int i = 0; i < EventSystem.GetComponent<RobotSpawner>().cloneToSpawn.Length; i++)
+        {
+            if (EventSystem.GetComponent<RobotSpawner>().cloneToSpawn[i].activeInHierarchy)
+            {
+                noRobotSpawned = false;
+                break;
+                
+            }
+        }
+
+        if (noRobotSpawned == true)
+        {
+            CommitBody();
+        }
+
     }
 }

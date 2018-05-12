@@ -35,5 +35,9 @@ public class CrowbarMiniGameCompletion : MonoBehaviour {
             this.Target.SetActive(false);
             this.TargetB.SetActive(true);
         }
+        else if (ObjectType == 2)
+        {
+            Target.GetComponent<LeverTimer>().Open();
+        }
     }
 }

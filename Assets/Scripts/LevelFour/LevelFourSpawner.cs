@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodySpawnLocation : MonoBehaviour {
+public class LevelFourSpawner : MonoBehaviour {
 
     public GameObject EventSystem;
 
@@ -12,8 +12,8 @@ public class BodySpawnLocation : MonoBehaviour {
     {
         if (other.tag == "Body")
         {
-            Debug.Log("Anus");
-            EventSystem.GetComponent<RobotSpawner>().ResetLerp();
+            Debug.Log("Entered");
+            EventSystem.GetComponent<RobotSpawnerLevelFour>().ResetLerp();
             bodyInLocation = true;
         }
     }
@@ -22,7 +22,6 @@ public class BodySpawnLocation : MonoBehaviour {
     {
         if (other.tag == "Body")
         {
-            Debug.Log("fart");
             bodyInLocation = false;
         }
     }

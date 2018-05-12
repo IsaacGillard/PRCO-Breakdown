@@ -66,6 +66,7 @@ public class RobotEyesMonitor : MonoBehaviour {
         if(EyeCapsule.GetComponent<BodySpawnLocation>().bodyInLocation == true)
         {
             CommitedLensStrength = LensStrength[currentLensStrength];
+            EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[0] = CommitedLensStrength;
             EventSystem.GetComponent<RobotSpawner>().SpawnEyes();
         }
         else

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-
-public class EngineerUSBMiniGame : MonoBehaviour {
+public class USBLevel4 : MonoBehaviour
+{
 
     [SerializeField]
     private GameObject USBCanvas;
@@ -12,33 +12,19 @@ public class EngineerUSBMiniGame : MonoBehaviour {
     private int monitorReferenceNumber;
 
     [SerializeField]
-    private GameObject RobotBodyMonitor;
+    private GameObject PersonalityMonitor;
 
     [SerializeField]
-    private GameObject RobotEyesMonitor;
-
-    [SerializeField]
-    private GameObject RobotSpeakerMonitor;
-
-    [SerializeField]
-    private GameObject RobotThrusterMonitor;
+    private GameObject PaintJobMonitor;
 
     [SerializeField]
     private GameObject NoRobotInCapsule;
-
-    [SerializeField]
-    private GameObject TestingMonitor;
 
     [SerializeField]
     private Transform Player;
 
     [SerializeField]
     private GameObject PlayerRaycast;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 
     private void OnEnable()
     {
@@ -49,23 +35,11 @@ public class EngineerUSBMiniGame : MonoBehaviour {
 
         if (monitorReferenceNumber == 1)
         {
-            RobotBodyMonitor.SetActive(true);
+            PersonalityMonitor.SetActive(true);
         }
         else if (monitorReferenceNumber == 2)
         {
-            RobotEyesMonitor.SetActive(true);
-        }
-        else if (monitorReferenceNumber == 3)
-        {
-            RobotSpeakerMonitor.SetActive(true);
-        }
-        else if (monitorReferenceNumber == 4)
-        {
-            RobotThrusterMonitor.SetActive(true);
-        }
-        else if (monitorReferenceNumber == 5)
-        {
-            TestingMonitor.SetActive(true);
+            PaintJobMonitor.SetActive(true);
         }
     }
 
@@ -77,11 +51,8 @@ public class EngineerUSBMiniGame : MonoBehaviour {
 
     public void ResetScreen()
     {
-        RobotBodyMonitor.SetActive(false);
-        RobotEyesMonitor.SetActive(false);
-        RobotSpeakerMonitor.SetActive(false);
-        RobotThrusterMonitor.SetActive(false);
-        TestingMonitor.SetActive(false);
+        PersonalityMonitor.SetActive(false);
+        PaintJobMonitor.SetActive(false);
         NoRobotInCapsule.SetActive(false);
     }
 

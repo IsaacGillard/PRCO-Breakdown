@@ -21,7 +21,7 @@ public class RobotSpeakerMonitor : MonoBehaviour {
 
     private int currentVoiceTone = 0;
 
-    private string CommitedVoiceTone;
+    private int CommitedVoiceTone;
 
     public TextMeshProUGUI VoiceToneValue;
 
@@ -40,7 +40,7 @@ public class RobotSpeakerMonitor : MonoBehaviour {
 
     public void IncreaseVoiceTone()
     {
-        if (currentVoiceTone < 2)
+        if (currentVoiceTone < 3)
         {
             currentVoiceTone++;
         }
@@ -58,7 +58,7 @@ public class RobotSpeakerMonitor : MonoBehaviour {
         }
         else
         {
-            currentVoiceTone = 2;
+            currentVoiceTone = 3;
         }
     }
 
@@ -66,7 +66,8 @@ public class RobotSpeakerMonitor : MonoBehaviour {
     {
         if (SpeakerCapsule.GetComponent<BodySpawnLocation>().bodyInLocation == true)
         {
-            CommitedVoiceTone = voiceTone[currentVoiceTone];
+            CommitedVoiceTone = currentVoiceTone;
+            EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[1] = CommitedVoiceTone;
             EventSystem.GetComponent<RobotSpawner>().SpawnSpeaker();
         }
         else

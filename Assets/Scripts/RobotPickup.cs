@@ -7,14 +7,21 @@ public class RobotPickup : MonoBehaviour {
     public Transform hand;
     public bool isDropped = true;
     public Material[] material;
+    public GameObject RobotPlayer;
 
     // Use this for initialization
     void Start () {
+        
         this.GetComponent<Renderer>().material = material[0];
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(GameObject.Find("RobotPlayer").activeInHierarchy)
+        {
+            hand = GameObject.Find("RobotHand").transform;
+        }
 		
 	}
 
@@ -33,7 +40,7 @@ public class RobotPickup : MonoBehaviour {
         this.GetComponent<Renderer>().material = material[0];
         isDropped = true;
         this.transform.parent = null;
-        //GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other)

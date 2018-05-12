@@ -11,6 +11,12 @@ public class RobotSpawner : MonoBehaviour {
     public GameObject EyesSpawnLocation;
     public GameObject SpeakerSpawnLocation;
     public GameObject ThrusterSpawnLocation;
+    public GameObject CompletedRobotPositionA;
+    public GameObject CompletedRobotPositionB;
+
+    public GameObject CompletedRobot;
+
+    public int[] completedRobotStatistics;
 
     private bool noRobotActive = true;
 
@@ -58,12 +64,29 @@ public class RobotSpawner : MonoBehaviour {
 
     }
 
+    public void SpawnThruster()
+    {
+        Debug.Log("spawned");
+        if (cloneToSpawn[2].activeInHierarchy)
+        {
+            cloneToSpawn[2].SetActive(false);
+            cloneToSpawn[3] = Instantiate(robotToSpawn[3], spawnLocations[3].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            Debug.Log("pass");
+        }
+        else
+        {
+            Debug.Log("fail");
+        }
+
+    }
+
     private void Update()
     {
         if (cloneToSpawn[0].activeInHierarchy)
         {
             if (BodySpawnLocation.GetComponent<BodySpawnLocation>().bodyInLocation == true)
             {
+                Debug.Log("cunt");
                 currentLerpTime += Time.deltaTime;
                 if(currentLerpTime >= lerpTime)
                 {
@@ -102,6 +125,24 @@ public class RobotSpawner : MonoBehaviour {
                 float percentage = currentLerpTime / lerpTime;
                 cloneToSpawn[2].transform.position = Vector3.Lerp(SpeakerSpawnLocation.transform.position, ThrusterSpawnLocation.transform.position, percentage);
             }
+        }
+        else if (cloneToSpawn[3].activeInHierarchy)
+        {
+            CompletedRobot = cloneToSpawn[3];
+            Debug.Log("activated");
+            CompletedRobot.GetComponent<CompletedRobot>().robotStatistics = completedRobotStatistics;
+
+            currentLerpTime += Time.deltaTime;
+            if (currentLerpTime >= lerpTime)
+            {
+                currentLerpTime = lerpTime;
+            }
+
+            float percentage = currentLerpTime / lerpTime;
+            cloneToSpawn[3].transform.position = Vector3.Lerp(CompletedRobotPositionA.transform.position, CompletedRobotPositionB.transform.position, percentage);
+            CompletedRobot.GetComponent<CompletedRobot>().ShowValues();
+
+            
         }
     }
 

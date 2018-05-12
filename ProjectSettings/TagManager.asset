@@ -18,6 +18,9 @@ TagManager:
   - Monitor
   - USB
   - Body
+  - Gear
+  - leftGear
+  - rightGear
   layers:
   - Default
   - TransparentFX

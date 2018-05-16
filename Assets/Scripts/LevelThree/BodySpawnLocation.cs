@@ -12,7 +12,6 @@ public class BodySpawnLocation : MonoBehaviour {
     {
         if (other.tag == "Body")
         {
-            Debug.Log("Anus");
             EventSystem.GetComponent<RobotSpawner>().ResetLerp();
             bodyInLocation = true;
         }
@@ -22,7 +21,6 @@ public class BodySpawnLocation : MonoBehaviour {
     {
         if (other.tag == "Body")
         {
-            Debug.Log("fart");
             bodyInLocation = false;
         }
     }

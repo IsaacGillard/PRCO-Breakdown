@@ -4,13 +4,38 @@ using UnityEngine;
 
 public class LevelFourPower : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private GameObject[] Tubes;
+
+    [SerializeField]
+    private GameObject Elevator;
+
+    private int completedTubes = 0;
+
+    //private bool allActive = true;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public void CheckAllTubes()
+    {
+        bool allActive = true;
+
+        for (int i = 0; i < Tubes.Length; i++)
+        {
+            if (Tubes[i].GetComponent<TubeDetector>().tubeCompleted == false)
+            {
+                allActive = false;
+                Debug.Log(i);
+            }
+        }
+
+        if (allActive == true)
+        {
+            Debug.Log("SUCKIN ON MAH TIDDIES");
+            Elevator.GetComponent<Elevator>().OpenDoors();
+        }
+    }
 }

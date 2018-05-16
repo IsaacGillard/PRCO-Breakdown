@@ -40,7 +40,7 @@ public class PersonalityMonitor : MonoBehaviour {
 
     public void IncreasePersonality()
     {
-        if (currentPersonality < 2)
+        if (currentPersonality < 3)
         {
             currentPersonality++;
         }
@@ -58,7 +58,7 @@ public class PersonalityMonitor : MonoBehaviour {
         }
         else
         {
-            currentPersonality = 2;
+            currentPersonality = 3;
         }
     }
 

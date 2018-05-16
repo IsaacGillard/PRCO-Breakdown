@@ -25,11 +25,24 @@ public class Paintedrobot : MonoBehaviour {
         }
     }
 
-    public void PaintRobot()
-    {
-        if (RobotStats[1] == "Suit")
+    public void PaintRobot() { 
+    
+        if (RobotStats[1] == "Overalls")
+        {
+            this.GetComponent<Renderer>().material = PaintJobs[0];
+        }
+        else if (RobotStats[1] == "Suit")
         {
             this.GetComponent<Renderer>().material = PaintJobs[1];
         }
+        else if (RobotStats[1] == "Military")
+        {
+            this.GetComponent<Renderer>().material = PaintJobs[2];
+        }
+        else if (RobotStats[1] == "Nerdy")
+        {
+            this.GetComponent<Renderer>().material = PaintJobs[3];
+        }
+
     }
 }

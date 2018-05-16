@@ -11,8 +11,9 @@ public class RobotPickup : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
-        this.GetComponent<Renderer>().material = material[0];
+
+
+        material[0] = this.GetComponent<Renderer>().material;
     }
 	
 	// Update is called once per frame

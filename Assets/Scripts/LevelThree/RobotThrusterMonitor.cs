@@ -69,6 +69,7 @@ public class RobotThrusterMonitor : MonoBehaviour {
             CommitedThrusterPower = thrusterPower[currentThusterPower];
             EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[2] = CommitedThrusterPower;
             EventSystem.GetComponent<RobotSpawner>().SpawnThruster();
+            EventSystem.GetComponent<LevelProgression>().UpdateProgression();
         }
         else
         {

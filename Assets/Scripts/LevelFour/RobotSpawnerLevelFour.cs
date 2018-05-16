@@ -30,14 +30,26 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     public void SpawnPersonality()
     {
-        if (cloneToSpawn[0].activeInHierarchy)
+        if(cloneToSpawn[0])
         {
-            Debug.Log("nope");
+            if (cloneToSpawn[0].activeInHierarchy)
+            {
+                Debug.Log("nope");
+            }
+            else
+            {
+                cloneToSpawn[0] = Instantiate(robotToSpawn[0], spawnLocations[0].transform.position, Quaternion.Euler(0, -90, 0)) as GameObject;
+                noRobotActive = false;
+            }
+
         }
         else
         {
-            cloneToSpawn[0] = Instantiate(robotToSpawn[0], spawnLocations[0].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            cloneToSpawn[0] = Instantiate(robotToSpawn[0], spawnLocations[0].transform.position, Quaternion.Euler(0, -90, 0)) as GameObject;
+            noRobotActive = false;
         }
+
+
 
     }
 
@@ -46,7 +58,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
         if (cloneToSpawn[0].activeInHierarchy)
         {
             cloneToSpawn[0].SetActive(false);
-            cloneToSpawn[1] = Instantiate(robotToSpawn[1], spawnLocations[1].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            cloneToSpawn[1] = Instantiate(robotToSpawn[1], spawnLocations[1].transform.position, Quaternion.Euler(0, -90, 0)) as GameObject;
         }
         else
         {
@@ -55,12 +67,12 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     }
 
-    public void SpawnCompletedRobot()
+    public void SpawnCompletedRobot(int PaintJob)
     {
         if (cloneToSpawn[1].activeInHierarchy)
         {
             cloneToSpawn[1].SetActive(false);
-            cloneToSpawn[2] = Instantiate(robotToSpawn[2], spawnLocations[2].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            cloneToSpawn[2] = Instantiate(robotToSpawn[2], spawnLocations[2].transform.position, Quaternion.Euler(-90, 180, 0)) as GameObject;
         }
         else
         {
@@ -71,51 +83,80 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     private void Start()
     {
-        SpawnPersonality();
+        //SpawnPersonality();
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (cloneToSpawn[0].activeInHierarchy)
+        if(cloneToSpawn[0])
         {
-            if (PersonalitySpawnA.GetComponent<LevelFourSpawner>().bodyInLocation == true)
+            if (noRobotActive == false)
             {
-                currentLerpTime += Time.deltaTime;
-                if (currentLerpTime >= lerpTime)
+                if (cloneToSpawn[0].activeInHierarchy)
                 {
-                    currentLerpTime = lerpTime;
+                    if (PersonalitySpawnA.GetComponent<LevelFourSpawner>().bodyInLocation == true)
+                    {
+                        currentLerpTime += Time.deltaTime;
+                        if (currentLerpTime >= lerpTime)
+                        {
+                            currentLerpTime = lerpTime;
+                        }
+
+                        float percentage = currentLerpTime / lerpTime;
+                        cloneToSpawn[0].transform.position = Vector3.Lerp(PersonalitySpawnA.transform.position, PersonalitySpawnB.transform.position, percentage);
+                    }
+
+
                 }
+                else if (cloneToSpawn[1].activeInHierarchy)
+                {
+                    if (PaintJobSpawnA.GetComponent<LevelFourSpawner>().bodyInLocation == true)
+                    {
 
-                float percentage = currentLerpTime / lerpTime;
-                cloneToSpawn[0].transform.position = Vector3.Lerp(PersonalitySpawnA.transform.position, PersonalitySpawnB.transform.position, percentage);
+                        currentLerpTime += Time.deltaTime;
+                        if (currentLerpTime >= lerpTime)
+                        {
+                            currentLerpTime = lerpTime;
+                        }
+
+                        float percentage = currentLerpTime / lerpTime;
+                        cloneToSpawn[1].transform.position = Vector3.Lerp(PaintJobSpawnA.transform.position, PaintJobSpawnB.transform.position, percentage);
+                    }
+                }
+                else if (cloneToSpawn[2].activeInHierarchy)
+                {
+                    CompletedRobot = cloneToSpawn[2];
+                    Debug.Log("activated");
+                    CompletedRobot.GetComponent<Paintedrobot>().RobotStats = RobotTraits;
+                    CompletedRobot.GetComponent<Paintedrobot>().PaintRobot();
+                    CompletedRobot.GetComponent<Paintedrobot>().ShowValues();
+                }
             }
-
-
-        }
-        else if (cloneToSpawn[1].activeInHierarchy)
-        {
-            if (PaintJobSpawnA.GetComponent<LevelFourSpawner>().bodyInLocation == true)
+            else
             {
 
-                currentLerpTime += Time.deltaTime;
-                if (currentLerpTime >= lerpTime)
-                {
-                    currentLerpTime = lerpTime;
-                }
-
-                float percentage = currentLerpTime / lerpTime;
-                cloneToSpawn[1].transform.position = Vector3.Lerp(PaintJobSpawnA.transform.position, PaintJobSpawnB.transform.position, percentage);
             }
         }
-        else if (cloneToSpawn[2].activeInHierarchy)
+
+        if(noRobotActive == true)
         {
-            CompletedRobot = cloneToSpawn[2];
-            Debug.Log("activated");
-            CompletedRobot.GetComponent<Paintedrobot>().RobotStats = RobotTraits;
-            CompletedRobot.GetComponent<Paintedrobot>().PaintRobot();
-            CompletedRobot.GetComponent<Paintedrobot>().ShowValues();
+            Debug.Log("Spawning");
+            SpawnPersonality();
         }
+
+    }
+
+    public void DestroyRobot()
+    {
+        noRobotActive = true;
+        for (int i = 0; i < cloneToSpawn.Length; i++)
+        {
+            Destroy(cloneToSpawn[i]);
+            Debug.Log(noRobotActive);
+            Debug.Log(i);
+        }
+        
 
     }
 

@@ -47,13 +47,11 @@ public class RobotRaycast : MonoBehaviour {
                     if (isCarrying == false)
                     {
                         isCarrying = true;
-                        Debug.Log("Picked up");
                         raycastedObj.GetComponent<RobotPickup>().Pickup();
                     }
                     else if (isCarrying == true)
                     {
                         isCarrying = false;
-                        Debug.Log("dropped");
                         raycastedObj.GetComponent<RobotPickup>().Drop();
                     }
                     
@@ -63,6 +61,11 @@ public class RobotRaycast : MonoBehaviour {
         else
         {
             CrosshairNormal();
+        }
+
+        if (Input.GetKeyDown("r"))
+        {
+            eventManager.GetComponent<PlayerSwap>().SwapPlayer();
         }
     }
 

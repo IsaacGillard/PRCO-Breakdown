@@ -40,7 +40,7 @@ public class PaintJobMonitor : MonoBehaviour {
 
     public void IncreasePaintJob()
     {
-        if (currentPaintJob < 2)
+        if (currentPaintJob < 3)
         {
             currentPaintJob++;
         }
@@ -58,7 +58,7 @@ public class PaintJobMonitor : MonoBehaviour {
         }
         else
         {
-            currentPaintJob = 2;
+            currentPaintJob = 3;
         }
     }
 
@@ -68,7 +68,7 @@ public class PaintJobMonitor : MonoBehaviour {
         {
             CommitedPaintJob = PaintJob[currentPaintJob];
             EventSystem.GetComponent<RobotSpawnerLevelFour>().RobotTraits[1] = CommitedPaintJob;
-            EventSystem.GetComponent<RobotSpawnerLevelFour>().SpawnCompletedRobot();
+            EventSystem.GetComponent<RobotSpawnerLevelFour>().SpawnCompletedRobot(currentPaintJob);
         }
         else
         {

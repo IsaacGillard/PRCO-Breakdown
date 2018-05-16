@@ -21,6 +21,7 @@ TagManager:
   - Gear
   - leftGear
   - rightGear
+  - KillBox
   layers:
   - Default
   - TransparentFX

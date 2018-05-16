@@ -134,14 +134,28 @@ public class Raycast : MonoBehaviour {
                 }
             }
 
-            else if (hit.collider.CompareTag("RobotControl") && robotController.activeInHierarchy)
+            else if (hit.collider.CompareTag("RobotControl"))
             {
-                raycastedObj = hit.collider.gameObject;
-                CrosshairActive();
-
-                if (Input.GetKeyDown("e"))
+                if (robotController.activeInHierarchy)
                 {
-                    eventManager.GetComponent<PlayerSwap>().SwapPlayer();
+                    raycastedObj = hit.collider.gameObject;
+                    CrosshairActive();
+
+                    if (Input.GetKeyDown("e"))
+                    {
+                        eventManager.GetComponent<PlayerSwap>().SwapPlayer();
+                    }
+                }
+                else
+                {
+                    raycastedObj = hit.collider.gameObject;
+                    CrosshairActive();
+
+                    if (Input.GetKeyDown("e"))
+                    {
+                        raycastedObj.GetComponent<SupervisorHints>().GiveHint();
+                    }
+                    
                 }
             }
 

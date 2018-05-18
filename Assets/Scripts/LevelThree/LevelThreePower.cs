@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class LevelThreePower : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject EventSystem;
+
+    [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
+    private GameObject Elevator;
+
     private int terminalsWithPower = 1;
 
     public GameObject terminalTwo;
@@ -17,6 +26,18 @@ public class LevelThreePower : MonoBehaviour {
     public GameObject terminalTwoScreen;
     public GameObject terminalThreeScreen;
     public GameObject terminalFourScreen;
+
+    [SerializeField]
+    private GameObject WireBoxCover;
+
+    [SerializeField]
+    private GameObject[] Capsules;
+
+    private bool LevelComplete = false;
+
+    private bool AllCapsulesComplete = false;
+
+    private int LevelProgression = 0;
 
     // Use this for initialization
     void Start () {
@@ -50,6 +71,40 @@ public class LevelThreePower : MonoBehaviour {
 
         }
 
+        if (LevelProgression == 0)
+        {
+            if (!WireBoxCover.activeInHierarchy)
+            {
+                EventSystem.GetComponent<LevelProgression>().UpdateProgression();
+                LevelProgression = 1;
+            }
+
+        }
+        if (LevelProgression == 1)
+        {
+            AllCapsulesComplete = true;
+
+            for (int i = 0; i < Capsules.Length; i++)
+            {
+                if (!Capsules[i].activeInHierarchy)
+                {
+                    AllCapsulesComplete = false;
+                    break;
+                }
+            }
+
+            if (AllCapsulesComplete == true)
+            {
+                EventSystem.GetComponent<LevelProgression>().UpdateProgression();
+                LevelProgression = 2;
+            }
+        }
+
+        if (Elevator.GetComponent<Elevator>().levelComplete == true)
+        {
+            EndlevelComment();
+        }
+
     }
 
     private void TerminalPowerOn()
@@ -60,5 +115,29 @@ public class LevelThreePower : MonoBehaviour {
     private void MonitorScreenOn(GameObject target)
     {
         target.GetComponent<Renderer>().material = monitorScreens[2];
+    }
+
+    public void EndlevelComment()
+    {
+        if (LevelComplete == false)
+        {
+            if (EventSystem.GetComponent<SupervisorOpinion>().OpinionMeter.value < 5)
+            {
+                Debug.Log("Bad");
+                AudioManager.GetComponent<AudioManager>().Play("EndLevelBad");
+            }
+            else
+            {
+                Debug.Log("Good");
+                AudioManager.GetComponent<AudioManager>().Play("EndLevelGood");
+            }
+
+            LevelComplete = true;
+        }
+        else
+        {
+
+        }
+
     }
 }

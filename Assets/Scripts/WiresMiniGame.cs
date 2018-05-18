@@ -7,8 +7,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class WiresMiniGame : MonoBehaviour {
 
-    
+
     //public GameObject Target;
+    public GameObject EventSystem;
     public GameObject WiresScreen;
     public Transform Player;
     public GameObject PlayerRaycast;
@@ -102,6 +103,6 @@ public class WiresMiniGame : MonoBehaviour {
     {
         WiresScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
-        UserInterface.GetComponent<PlayerLives>().ReduceLife();
+        EventSystem.GetComponent<SupervisorOpinion>().ReduceOpinion(2);
     }
 }

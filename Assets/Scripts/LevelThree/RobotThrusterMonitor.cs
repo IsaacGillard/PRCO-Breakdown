@@ -7,6 +7,9 @@ using TMPro;
 public class RobotThrusterMonitor : MonoBehaviour {
 
     [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
     private GameObject EventSystem;
 
     public GameObject ThrusterCapsule;
@@ -65,6 +68,7 @@ public class RobotThrusterMonitor : MonoBehaviour {
     {
         if (ThrusterCapsule.GetComponent<BodySpawnLocation>().bodyInLocation == true)
         {
+            AudioManager.GetComponent<AudioManager>().Play("Drill");
             Debug.Log("committed");
             CommitedThrusterPower = thrusterPower[currentThusterPower];
             EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[2] = CommitedThrusterPower;

@@ -5,6 +5,12 @@ using UnityEngine;
 public class Elevator : MonoBehaviour {
 
     [SerializeField]
+    private GameObject EventSystem;
+
+    [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
     private GameObject LeftDoor;
 
     [SerializeField]
@@ -19,7 +25,8 @@ public class Elevator : MonoBehaviour {
     [SerializeField]
     private GameObject RightSpawnB;
 
-    private bool levelComplete;
+    [HideInInspector]
+    public bool levelComplete;
 
     private float lerpTime = 3;
     private float currentLerpTime = 0;
@@ -49,6 +56,7 @@ public class Elevator : MonoBehaviour {
 
     public void OpenDoors()
     {
+        AudioManager.GetComponent<AudioManager>().Play("Elevator");
         levelComplete = true;
 
     }

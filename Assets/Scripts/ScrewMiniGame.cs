@@ -16,6 +16,9 @@ public class ScrewMiniGame : MonoBehaviour {
     private int alternator = 0;
     public GameObject UserInterface;
 
+    public GameObject EventSystem;
+    public GameObject AudioManager;
+
     // Use this for initialization
     void OnEnable ()
     {
@@ -47,6 +50,7 @@ public class ScrewMiniGame : MonoBehaviour {
                 progress += 0.1f;
                 slider.value = progress;
                 Debug.Log(progress);
+                AudioManager.GetComponent<AudioManager>().Play("Screwdriver");
             }
             else if (alternator == 1)
             {
@@ -62,6 +66,7 @@ public class ScrewMiniGame : MonoBehaviour {
                 progress += 0.1f;
                 slider.value = progress;
                 Debug.Log(progress);
+                AudioManager.GetComponent<AudioManager>().Play("Screwdriver");
             }
             else if (alternator == 0)
             {
@@ -108,8 +113,8 @@ public class ScrewMiniGame : MonoBehaviour {
     {
         ScrewScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
-        UserInterface.GetComponent<PlayerLives>().ReduceLife();
-        
+        EventSystem.GetComponent<SupervisorOpinion>().ReduceOpinion(2);
+
 
     }
 

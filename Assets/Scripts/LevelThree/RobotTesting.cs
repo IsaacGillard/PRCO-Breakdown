@@ -14,6 +14,9 @@ public class RobotTesting : MonoBehaviour {
     private GameObject EventSystem;
 
     [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
     private GameObject Trigger;
 
     [SerializeField]
@@ -44,6 +47,12 @@ public class RobotTesting : MonoBehaviour {
     private int VoiceResult;
     private int ThrusterResult;
 
+    //[SerializeField]
+   // private Animation ThrusterAnimation;
+
+    //[SerializeField]
+    //private AnimationClip[] ThrusterAnimations;
+
 
 
     // Use this for initialization
@@ -59,6 +68,8 @@ public class RobotTesting : MonoBehaviour {
             Robot = EventSystem.GetComponent<RobotSpawner>().CompletedRobot;
             StartScreen.SetActive(true);
             NoRobotInCapsule.SetActive(false);
+
+            
         }
         else
         {
@@ -79,10 +90,13 @@ public class RobotTesting : MonoBehaviour {
         if (StagesPassed == 3)
         {
             SuccessButton.SetActive(true);
+            AudioManager.GetComponent<AudioManager>().Play("Correct");
         }
         else
         {
             FailureButton.SetActive(true);
+            AudioManager.GetComponent<AudioManager>().Play("Incorrect");
+            EventSystem.GetComponent<SupervisorOpinion>().ReduceOpinion(2);
         }
     }
 
@@ -120,14 +134,40 @@ public class RobotTesting : MonoBehaviour {
     {
         ThrusterResult = Robot.GetComponent<CompletedRobot>().robotStatistics[2];
 
-        if (ThrusterResult == 50)
+        //AnimationClip ThrusterAnim;
+
+        //foreach (AnimationClip clip in ThrusterAnimations)
+        //{
+        //    ThrusterAnimation.AddClip(clip, clip.name);
+        //}
+
+        if (ThrusterResult == 30)
         {
+            
+            //ThrusterAnimation.Play(ThrusterAnimations[0].name);
+
+            
+            ThrusterValue.text = "Fail";
+            
+        }
+
+        else if (ThrusterResult == 50)
+        {
+           // ThrusterAnimation.Play(ThrusterAnimations[1].name);
             ThrusterValue.text = "Pass";
             StagesPassed += 1;
         }
-        else
+        else if (ThrusterResult == 70)
         {
+            //ThrusterAnimation.Play(ThrusterAnimations[2].name);
             ThrusterValue.text = "Fail";
         }
     }
+
+    public void RestartProcess()
+    {
+        EventSystem.GetComponent<RobotSpawner>().DestroyRobot();
+    }
+
+
 }

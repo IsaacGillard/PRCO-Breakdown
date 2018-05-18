@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour {
 
-    public GameObject ElevatorLeftDoor;
-    public GameObject ElevatorRightDoor;
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
@@ -16,9 +13,4 @@ public class LevelComplete : MonoBehaviour {
         }
     }
 
-    public void OpenElevator()
-    {
-        ElevatorLeftDoor.SetActive(false);
-        ElevatorRightDoor.SetActive(false);
-    }
 }

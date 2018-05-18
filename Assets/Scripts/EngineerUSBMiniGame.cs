@@ -30,6 +30,9 @@ public class EngineerUSBMiniGame : MonoBehaviour {
     private GameObject TestingMonitor;
 
     [SerializeField]
+    private GameObject RestartProcess;
+
+    [SerializeField]
     private Transform Player;
 
     [SerializeField]
@@ -83,12 +86,14 @@ public class EngineerUSBMiniGame : MonoBehaviour {
         RobotThrusterMonitor.SetActive(false);
         TestingMonitor.SetActive(false);
         NoRobotInCapsule.SetActive(false);
+        RestartProcess.SetActive(false);
     }
 
     public void Quit()
     {
         Debug.Log("Quit");
         NoRobotInCapsule.SetActive(false);
+        RestartProcess.SetActive(false);
         Cursor.visible = false;
         Player.GetComponent<FirstPersonController>().enabled = true;
         USBCanvas.SetActive(false);

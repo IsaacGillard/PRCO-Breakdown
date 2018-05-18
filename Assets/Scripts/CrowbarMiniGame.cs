@@ -6,6 +6,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 
 public class CrowbarMiniGame : MonoBehaviour {
+
+    public GameObject AudioManager;
+    public GameObject EventSystem;
     public Transform Player;
     public GameObject PlayerRaycast;
     public Slider sliderOne;
@@ -16,6 +19,8 @@ public class CrowbarMiniGame : MonoBehaviour {
     private float progress = 0;
     public GameObject CrowbarScreen;
     public GameObject UserInterface;
+
+    private bool isPlayingAudio = false;
 
 
     private void OnEnable()
@@ -40,46 +45,58 @@ public class CrowbarMiniGame : MonoBehaviour {
 
 
         if (sliderOne.enabled)
-            {
-                progress = sliderOne.value;
+        { 
+            progress = sliderOne.value;
 
-                if (progress >= 1.0f)
+            if (progress >= 1.0f)
+            {                
+                sliderOne.gameObject.SetActive(false);
+                sliderTwo.gameObject.SetActive(true);
+
+                isPlayingAudio = true;
+
+                if(isPlayingAudio == true)
                 {
-                    sliderOne.gameObject.SetActive(false);
-                    sliderTwo.gameObject.SetActive(true);
+                    AudioManager.GetComponent<AudioManager>().Play("CrowbarTwo");
+                    isPlayingAudio = false;
                 }
             }
-            if (sliderTwo.enabled)
-            {
-                progress = sliderTwo.value;
+        }
+        if (sliderTwo.enabled)
+        {
+                
+            progress = sliderTwo.value;
 
-                if (progress >= 1.0f)
-                {
-                    sliderTwo.gameObject.SetActive(false);
-                    sliderThree.gameObject.SetActive(true);
-
-                }
-            }
-            if (sliderThree.enabled)
+            if (progress >= 1.0f)
             {
-                progress = sliderThree.value;
-
-                if (progress >= 1.0f)
-                {
-                    CrowbarMiniGameCompleted();
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-            }
-            else
-            {
+                sliderTwo.gameObject.SetActive(false);
+                AudioManager.GetComponent<AudioManager>().Play("CrowbarTwo");
+                sliderThree.gameObject.SetActive(true);
 
             }
+        }
+        if (sliderThree.enabled)
+        {
+                
+            progress = sliderThree.value;
+
+            if (progress >= 1.0f)
+            {
+                CrowbarMiniGameCompleted();
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+        else
+        {
+
+        }
              
     }
 
     public void CrowbarMiniGameCompleted()
     {
+        AudioManager.GetComponent<AudioManager>().Play("CrowbarTwo");
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
         PlayerRaycast.GetComponent<Raycast>().CrowbarCompletion();
@@ -89,7 +106,7 @@ public class CrowbarMiniGame : MonoBehaviour {
     {
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
-        UserInterface.GetComponent<PlayerLives>().ReduceLife();
+        EventSystem.GetComponent<SupervisorOpinion>().ReduceOpinion(2);
     }
 
     public void Reset()

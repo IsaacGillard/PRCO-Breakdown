@@ -9,6 +9,9 @@ public class RobotEyesMonitor : MonoBehaviour {
     [SerializeField]
     private GameObject EventSystem;
 
+    [SerializeField]
+    private GameObject AudioManager;
+
     public GameObject EyeCapsule;
 
     public GameObject EyesMonitor;
@@ -65,6 +68,7 @@ public class RobotEyesMonitor : MonoBehaviour {
     {
         if(EyeCapsule.GetComponent<BodySpawnLocation>().bodyInLocation == true)
         {
+            AudioManager.GetComponent<AudioManager>().Play("Drill");
             CommitedLensStrength = LensStrength[currentLensStrength];
             EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[0] = CommitedLensStrength;
             EventSystem.GetComponent<RobotSpawner>().SpawnEyes();

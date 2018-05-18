@@ -6,6 +6,7 @@ public class ScrewPanel : MonoBehaviour {
 
     public GameObject Panel;
     public GameObject[] Screws;
+    public GameObject EventSystem;
     bool allInActive = true;
 
     void Update ()
@@ -25,6 +26,7 @@ public class ScrewPanel : MonoBehaviour {
 
         if (allInActive == true)
         {
+            //EventSystem.GetComponent<LevelProgression>().UpdateProgression();
             Panel.SetActive(false);
         }
     }

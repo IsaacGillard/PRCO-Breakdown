@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Gears : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject AudioManager;
     private GameObject[] leftGears;
     private GameObject[] rightGears;
     private bool turnGears;
 
 	// Use this for initialization
 	void Start () {
-		
+        AudioManager.GetComponent<AudioManager>().Play("Generator");
 	}
 	
 	// Update is called once per frame

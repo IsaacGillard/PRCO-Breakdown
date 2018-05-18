@@ -14,6 +14,8 @@ public class Raycast : MonoBehaviour {
 
     public GameObject eventManager;
 
+    public GameObject AudioManager;
+
     public GameObject[] equipmentHints;
 
     public GameObject UserInterface;
@@ -116,7 +118,7 @@ public class Raycast : MonoBehaviour {
             }
             else if (hit.collider.CompareTag("USB"))
             {
-                equipmentHints[2].SetActive(true);
+                equipmentHints[4].SetActive(true);
 
                 CrosshairActive();
 
@@ -125,6 +127,7 @@ public class Raycast : MonoBehaviour {
                     raycastedObj = hit.collider.gameObject;
                     if (Input.GetKeyDown("e"))
                     {
+                        AudioManager.GetComponent<AudioManager>().Play("Monitor");
                         UserInterface.SetActive(false);
                         monitorReference = raycastedObj.GetComponent<USBStats>().MonitorReferenceNumber;
                         Debug.Log(monitorReference);
@@ -136,18 +139,24 @@ public class Raycast : MonoBehaviour {
 
             else if (hit.collider.CompareTag("RobotControl"))
             {
+                
                 if (robotController.activeInHierarchy)
                 {
+                    equipmentHints[3].SetActive(false);
+                    equipmentHints[5].SetActive(true);
                     raycastedObj = hit.collider.gameObject;
                     CrosshairActive();
 
                     if (Input.GetKeyDown("e"))
                     {
+                        equipmentHints[5].SetActive(false);
                         eventManager.GetComponent<PlayerSwap>().SwapPlayer();
                     }
                 }
                 else
                 {
+                    equipmentHints[3].SetActive(true);
+                    equipmentHints[5].SetActive(false);
                     raycastedObj = hit.collider.gameObject;
                     CrosshairActive();
 

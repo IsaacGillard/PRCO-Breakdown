@@ -8,6 +8,9 @@ using TMPro;
 public class RobotSpeakerMonitor : MonoBehaviour {
 
     [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
     private GameObject EventSystem;
 
     public GameObject SpeakerCapsule;
@@ -66,6 +69,7 @@ public class RobotSpeakerMonitor : MonoBehaviour {
     {
         if (SpeakerCapsule.GetComponent<BodySpawnLocation>().bodyInLocation == true)
         {
+            AudioManager.GetComponent<AudioManager>().Play("Drill");
             CommitedVoiceTone = currentVoiceTone;
             EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[1] = CommitedVoiceTone;
             EventSystem.GetComponent<RobotSpawner>().SpawnSpeaker();

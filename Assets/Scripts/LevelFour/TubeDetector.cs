@@ -6,6 +6,9 @@ public class TubeDetector : MonoBehaviour {
 
     public GameObject EventSystem;
 
+    [SerializeField]
+    private GameObject AudioManager;
+
     public bool bodyInLocation = false;
 
     public bool tubeCompleted = false;
@@ -45,6 +48,7 @@ public class TubeDetector : MonoBehaviour {
                         if (Robot.GetComponent<Paintedrobot>().RobotStats[1] == paintJob)
                         {
                             Debug.Log("correct paintJob");
+                            AudioManager.GetComponent<AudioManager>().Play("Correct");
                             tubeCompleted = true;
                             Monitor.GetComponent<TubeMonitor>().ChangeScreen(3);
                             EventSystem.GetComponent<LevelFourPower>().CheckAllTubes();
@@ -53,6 +57,7 @@ public class TubeDetector : MonoBehaviour {
                         else
                         {
                             Debug.Log("correct personality, incorrect paintjob");
+                            AudioManager.GetComponent<AudioManager>().Play("Incorrect");
                             Monitor.GetComponent<TubeMonitor>().ChangeScreen(2);
                             EventSystem.GetComponent<RobotSpawnerLevelFour>().DestroyRobot();
                         }
@@ -60,6 +65,7 @@ public class TubeDetector : MonoBehaviour {
                     else
                     {
                         Debug.Log("incorrect personality");
+                        AudioManager.GetComponent<AudioManager>().Play("Incorrect");
                         Monitor.GetComponent<TubeMonitor>().ChangeScreen(2);
                         EventSystem.GetComponent<RobotSpawnerLevelFour>().DestroyRobot();
                     }

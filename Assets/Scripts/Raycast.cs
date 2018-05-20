@@ -61,25 +61,24 @@ public class Raycast : MonoBehaviour {
 
         if(Physics.Raycast(transform.position, fwd, out hit, rayLength, LayerMaskInteract.value))
         {
+            //If the raycast detects an object with the Screw tag
             if(hit.collider.CompareTag("Screw"))
             {
+                // set the equipment hint to the screwdriver hint
                 equipmentHints[0].SetActive(true);
+                // change the colour of the crosshair
                 CrosshairActive();
+                // If the player has the screwdriver currently equipped
                 if (screwdriver.activeInHierarchy)
                 {
                     if (Input.GetKeyDown("e"))
                     {
-                        
+                        // Disable the User Interface and activate the Screwdriver Minigame UI
                         UserInterface.SetActive(false);
                         raycastedObj = hit.collider.gameObject;
                         ScrewScreen.SetActive(true);
                     }
-                }
-                
-                
-                //raycastedObj.GetComponent<RaycastMaterialChange>().OnHoverOver(raycastedObj);
-
-                
+                }                                         
             }
             else if (hit.collider.CompareTag("Crowbar"))
             {

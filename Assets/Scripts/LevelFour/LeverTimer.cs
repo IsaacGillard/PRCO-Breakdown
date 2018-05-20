@@ -9,6 +9,9 @@ public class LeverTimer : MonoBehaviour {
     private float timerProgress = 10;
 
     [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
     private GameObject HatchDoor;
 
     [SerializeField]
@@ -46,7 +49,7 @@ public class LeverTimer : MonoBehaviour {
         HatchDoor.SetActive(false);
         LeverUp.SetActive(false);
         LeverDown.SetActive(true);
-
+        AudioManager.GetComponent<AudioManager>().Play("Timer");
     }
 
     public void Close()
@@ -56,5 +59,6 @@ public class LeverTimer : MonoBehaviour {
         HatchDoor.SetActive(true);
         LeverUp.SetActive(true);
         LeverDown.SetActive(false);
+        AudioManager.GetComponent<AudioManager>().Play("CrowbarTwo");
     }
 }

@@ -5,7 +5,10 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class RobotJetpack : MonoBehaviour {
 
-    
+    public AudioSource Thruster;
+    public AudioClip Thrustersound;
+    private bool IsPlaying = true;
+
     public float Speed = 3;
 
     public CharacterController Robot;
@@ -18,16 +21,31 @@ public class RobotJetpack : MonoBehaviour {
     public float MaxForce = 5;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Update ()
+    {
+		if (Input.GetKey(KeyCode.Space))
+        {
+            
+            if (IsPlaying == false)
+            {
+                Thruster.PlayOneShot(Thrustersound, 0.5f);
+                IsPlaying = true;
+                
+            }
+            
+        }
+        else
+        {
+            IsPlaying = false;
+            Thruster.Stop();
+        }
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-		if(Input.GetKey(KeyCode.Space) && MaxForce > 0)
+        if (Input.GetKey(KeyCode.Space) && MaxForce > 0)
         {
-            
             MaxForce -= Time.deltaTime;
 
             if (currentForce < 1)
@@ -42,11 +60,14 @@ public class RobotJetpack : MonoBehaviour {
 
         if (MaxForce < 0 && currentForce > 0)
         {
+            
             currentForce -= Time.deltaTime;
         }
 
         if (!Input.GetKey(KeyCode.Space))
         {
+            
+
             if (currentForce > 0)
             {
                 currentForce -= Time.deltaTime;

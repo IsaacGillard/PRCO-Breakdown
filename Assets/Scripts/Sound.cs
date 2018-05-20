@@ -21,6 +21,8 @@ public class Sound {
 
     public bool loop;
 
+    public bool playOnAwake;
+
     [HideInInspector]
     public AudioSource source;
 }

@@ -7,6 +7,7 @@ public class PlayerSwap : MonoBehaviour {
 
     public GameObject[] characters;
     private GameObject currentCharacter;
+    private Transform SupervisorLocation;
     int CharactersIndex;
 
     public GameObject robotMesh;
@@ -15,6 +16,7 @@ public class PlayerSwap : MonoBehaviour {
 	void Start () {
         CharactersIndex = 0;
         currentCharacter = characters[0];
+        SupervisorLocation = characters[1].transform;
 	}
 	
 	// Update is called once per frame
@@ -39,6 +41,7 @@ public class PlayerSwap : MonoBehaviour {
         CharactersIndex++;
         if (CharactersIndex == characters.Length)
         {
+            
             CharactersIndex = 0;
         }
 

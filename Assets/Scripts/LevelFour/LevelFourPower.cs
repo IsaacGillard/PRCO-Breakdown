@@ -34,7 +34,6 @@ public class LevelFourPower : MonoBehaviour {
 
         if (allActive == true)
         {
-            Debug.Log("SUCKIN ON MAH TIDDIES");
             Elevator.GetComponent<Elevator>().OpenDoors();
         }
     }

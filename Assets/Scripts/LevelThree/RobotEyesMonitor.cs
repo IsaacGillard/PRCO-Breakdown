@@ -68,6 +68,7 @@ public class RobotEyesMonitor : MonoBehaviour {
     {
         if(EyeCapsule.GetComponent<BodySpawnLocation>().bodyInLocation == true)
         {
+            // commit the users changes on the monito, and send the committed lens strength to the completed robot the player is building. Then spawn the next robot to be sent to the next capsule.
             AudioManager.GetComponent<AudioManager>().Play("Drill");
             CommitedLensStrength = LensStrength[currentLensStrength];
             EventSystem.GetComponent<RobotSpawner>().completedRobotStatistics[0] = CommitedLensStrength;

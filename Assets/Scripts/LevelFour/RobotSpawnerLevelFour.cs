@@ -19,6 +19,9 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
     [SerializeField]
     private GameObject PaintJobSpawnB;
 
+    [SerializeField]
+    private GameObject AudioManager;
+
     public GameObject CompletedRobot;
 
     public string[] RobotTraits;
@@ -40,6 +43,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
             {
                 cloneToSpawn[0] = Instantiate(robotToSpawn[0], spawnLocations[0].transform.position, Quaternion.Euler(0, -90, 0)) as GameObject;
                 noRobotActive = false;
+                
             }
 
         }
@@ -59,6 +63,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
         {
             cloneToSpawn[0].SetActive(false);
             cloneToSpawn[1] = Instantiate(robotToSpawn[1], spawnLocations[1].transform.position, Quaternion.Euler(0, -90, 0)) as GameObject;
+            AudioManager.GetComponent<AudioManager>().Play("Drill");
         }
         else
         {
@@ -73,6 +78,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
         {
             cloneToSpawn[1].SetActive(false);
             cloneToSpawn[2] = Instantiate(robotToSpawn[2], spawnLocations[2].transform.position, Quaternion.Euler(-90, 180, 0)) as GameObject;
+            AudioManager.GetComponent<AudioManager>().Play("SprayPaint");
         }
         else
         {

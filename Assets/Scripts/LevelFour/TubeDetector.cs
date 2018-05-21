@@ -39,6 +39,7 @@ public class TubeDetector : MonoBehaviour {
         {
             if (bodyInLocation == true)
             {
+                // if a robot is dropped within the collider, detect its personality and paint job, and either accept it and complete tube, or reject it and destroy robot
                 if (Robot.GetComponent<RobotPickup>().isDropped == true)
                 {
                     Debug.Log("dropped");

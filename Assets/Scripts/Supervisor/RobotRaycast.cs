@@ -37,6 +37,7 @@ public class RobotRaycast : MonoBehaviour {
 
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, LayerMaskInteract.value))
         {
+            // detect if supervisor is looking at robot, and pick robot up if e is pressed
             if (hit.collider.CompareTag("Robot"))
             {
                 raycastedObj = hit.collider.gameObject;

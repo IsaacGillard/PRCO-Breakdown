@@ -25,6 +25,7 @@ public class CrowbarMiniGameCompletion : MonoBehaviour {
 
     public void Completion()
     {
+        // depending on object type, activate completed components
         if (ObjectType == 0)
         {
             this.Target.SetActive(false);

@@ -33,6 +33,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     public void SpawnPersonality()
     {
+        // detect is a robot is in the heirarchy, and spawn the robot depending on the players progression throught the level
         if(cloneToSpawn[0])
         {
             if (cloneToSpawn[0].activeInHierarchy)
@@ -59,6 +60,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     public void SpawnPaintJob()
     {
+        // spawn the fist robot in array
         if (cloneToSpawn[0].activeInHierarchy)
         {
             cloneToSpawn[0].SetActive(false);
@@ -74,6 +76,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     public void SpawnCompletedRobot(int PaintJob)
     {
+        // spawn the second robot in array
         if (cloneToSpawn[1].activeInHierarchy)
         {
             cloneToSpawn[1].SetActive(false);
@@ -101,6 +104,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
             {
                 if (cloneToSpawn[0].activeInHierarchy)
                 {
+                    // check if the robot is currently in the correct location, and then move the robot to the next location 
                     if (PersonalitySpawnA.GetComponent<LevelFourSpawner>().bodyInLocation == true)
                     {
                         currentLerpTime += Time.deltaTime;
@@ -117,6 +121,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
                 }
                 else if (cloneToSpawn[1].activeInHierarchy)
                 {
+                    // check if the robot is currently in the correct location, and then move the robot to the next location 
                     if (PaintJobSpawnA.GetComponent<LevelFourSpawner>().bodyInLocation == true)
                     {
 
@@ -132,6 +137,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
                 }
                 else if (cloneToSpawn[2].activeInHierarchy)
                 {
+                    // spawn the completed robot
                     CompletedRobot = cloneToSpawn[2];
                     Debug.Log("activated");
                     CompletedRobot.GetComponent<Paintedrobot>().RobotStats = RobotTraits;
@@ -147,6 +153,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
         if(noRobotActive == true)
         {
+            // if no robot is in the heirarchy, spawn another at the start location
             Debug.Log("Spawning");
             SpawnPersonality();
         }
@@ -155,6 +162,7 @@ public class RobotSpawnerLevelFour : MonoBehaviour {
 
     public void DestroyRobot()
     {
+        // destroy all robots in array, prompting another to spawn at the start
         noRobotActive = true;
         for (int i = 0; i < cloneToSpawn.Length; i++)
         {

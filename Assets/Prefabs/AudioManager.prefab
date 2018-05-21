@@ -54,45 +54,57 @@ MonoBehaviour:
   sounds:
   - name: Introduction
     SourceOfSound: {fileID: 0}
-    clip: {fileID: 8300000, guid: a1c7a31facd0d714e9cce8da929f15a0, type: 3}
+    clip: {fileID: 8300000, guid: 09208f420cb87be4ba43e52a7686745d, type: 3}
     volume: 1
     pitch: 1
-    spatialBlend: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: HintOne
     SourceOfSound: {fileID: 0}
-    clip: {fileID: 8300000, guid: 0978f7a0a1be03047a9c261be42e22c1, type: 3}
+    clip: {fileID: 8300000, guid: b2efe2c90871ea54bacc4a9323b5a1e4, type: 3}
     volume: 1
     pitch: 1
-    spatialBlend: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: HintTwo
     SourceOfSound: {fileID: 0}
-    clip: {fileID: 8300000, guid: 72961db0cfcb8d7418184b19565bb9ff, type: 3}
+    clip: {fileID: 8300000, guid: ea0b27a78bf086445a916634bad18b2c, type: 3}
     volume: 1
     pitch: 1
-    spatialBlend: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: HintThree
     SourceOfSound: {fileID: 0}
-    clip: {fileID: 8300000, guid: 80294a1beab739346aaf57e660d8ec39, type: 3}
+    clip: {fileID: 8300000, guid: 92b8f2c7e55593c4c9169bc8f9835536, type: 3}
     volume: 1
     pitch: 1
-    spatialBlend: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: EndLevelGood
     SourceOfSound: {fileID: 0}
-    clip: {fileID: 8300000, guid: cd95452f957be80418ef70decbc0a5ae, type: 3}
+    clip: {fileID: 8300000, guid: de5d41963aebf164f87455ea68477a0b, type: 3}
     volume: 1
     pitch: 1
-    spatialBlend: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: EndLevelBad
     SourceOfSound: {fileID: 0}
-    clip: {fileID: 8300000, guid: c6556a2df11411f4db52bb6e79087f45, type: 3}
+    clip: {fileID: 8300000, guid: 5b90257e6dd75e241933e6536bf57f20, type: 3}
     volume: 1
     pitch: 1
-    spatialBlend: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: Screwdriver
     SourceOfSound: {fileID: 0}
@@ -100,4 +112,141 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CrowbarOne
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: c0dd7234b11145949bb10bd885554da3, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CrowbarTwo
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5e3ba8703607ccc48b45e71c9f20e7c7, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Monitor
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: e50a0618b656fe440b018f205f392993, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Thruster
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: ffb39eb4a3b6f424fa87866f9269b360, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Correct
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: bd8298394e2673143891f84c87f326e6, type: 3}
+    volume: 0.234
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Incorrect
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: b66aecb2ef6bc6943b0f2855c2cc03c8, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Generator
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 1504bf1ef19a91a4b9a3a02e7be11eb3, type: 3}
+    volume: 0.25
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Drill
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 704944f8710a59042995f1617f02ecef, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SprayPaint
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 41c9d6c3709825d44aa769780c5e1f80, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Elevator
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5e138626746cac449b124d4469533956, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Timer
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: e7b3d078dcdf8a549bf7280dea0f8d62, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Security
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 6d25408cc305cec4487b7771b5ccf9e2, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Maintenance
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: f4b8ee7dfc544c341a139d95097a07c7, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Sales
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: d9745cb4e2fc52d40994983221955341, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TechSupport
+    SourceOfSound: {fileID: 0}
+    clip: {fileID: 8300000, guid: 170aa07c6735f76449b630056b474e15, type: 3}
+    volume: 1
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}

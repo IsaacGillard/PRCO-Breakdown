@@ -82,6 +82,7 @@ public class Raycast : MonoBehaviour {
             }
             else if (hit.collider.CompareTag("Crowbar"))
             {
+                // identical to above
                 equipmentHints[1].SetActive(true);              
                 CrosshairActive();
 
@@ -99,6 +100,7 @@ public class Raycast : MonoBehaviour {
             }
             else if (hit.collider.CompareTag("Wires"))
             {
+                // identical to above
                 equipmentHints[2].SetActive(true);
                 
                 CrosshairActive();
@@ -117,6 +119,7 @@ public class Raycast : MonoBehaviour {
             }
             else if (hit.collider.CompareTag("USB"))
             {
+                // identical to above
                 equipmentHints[4].SetActive(true);
 
                 CrosshairActive();
@@ -138,7 +141,7 @@ public class Raycast : MonoBehaviour {
 
             else if (hit.collider.CompareTag("RobotControl"))
             {
-                
+                // depending on equipment active, ask for hint or activate robot controller
                 if (robotController.activeInHierarchy)
                 {
                     equipmentHints[3].SetActive(false);
@@ -169,6 +172,7 @@ public class Raycast : MonoBehaviour {
 
             else if (hit.collider.CompareTag("Monitor"))
             {
+                // identical to above
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
 

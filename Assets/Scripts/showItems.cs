@@ -44,7 +44,7 @@ public class showItems : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-
+            // depending on which number input is recieved, set current item to the correct item
             if (showScrewdriver == true)
             {
                 screwdriver.SetActive(true);

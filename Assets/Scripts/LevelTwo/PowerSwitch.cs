@@ -8,6 +8,12 @@ public class PowerSwitch : MonoBehaviour {
     private GameObject EventSystem;
 
     [SerializeField]
+    private GameObject GameOverScreen;
+
+    [SerializeField]
+    private GameObject DeathMessage;
+
+    [SerializeField]
     private GameObject MainPower;
 
     [SerializeField]
@@ -20,6 +26,7 @@ public class PowerSwitch : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        // if all power columns are activated, activate main column, else fail level
 
         if (ColumnOne.activeInHierarchy && ColumnTwo.activeInHierarchy && ColumnThree.activeInHierarchy)
         {
@@ -28,7 +35,8 @@ public class PowerSwitch : MonoBehaviour {
         }
         else
         {
-            
+            GameOverScreen.SetActive(true);
+            DeathMessage.SetActive(true);
         }
 
 

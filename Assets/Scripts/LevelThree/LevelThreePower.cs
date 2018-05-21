@@ -46,6 +46,7 @@ public class LevelThreePower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // detect if terminals have power, and update their screens
 
         if(terminalTwo.activeInHierarchy)
         {
@@ -71,6 +72,7 @@ public class LevelThreePower : MonoBehaviour {
 
         }
 
+        // check level progression 
         if (LevelProgression == 0)
         {
             if (!WireBoxCover.activeInHierarchy)

@@ -31,7 +31,7 @@ public class ScrewMiniGame : MonoBehaviour {
 	void Update () {
 
         Player.GetComponent<FirstPersonController>().enabled = false;
-
+        //timer
         if (timerProgress >= 0.1)
         {
             timerProgress -= Time.deltaTime;
@@ -41,6 +41,7 @@ public class ScrewMiniGame : MonoBehaviour {
         {
             ScrewMiniGameFailed();
         }
+        // alternate between two keys for the user to press. If wrong key is pressed, reset progress bar
 
         if (Input.GetKeyDown("f"))
         {

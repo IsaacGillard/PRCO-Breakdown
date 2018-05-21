@@ -50,6 +50,8 @@ public class EngineerUSBMiniGame : MonoBehaviour {
         monitorReferenceNumber = PlayerRaycast.GetComponent<Raycast>().monitorReference;
         Debug.Log(monitorReferenceNumber);
 
+        // open specific UI screen depending on monitor reference
+
         if (monitorReferenceNumber == 1)
         {
             RobotBodyMonitor.SetActive(true);
@@ -80,6 +82,7 @@ public class EngineerUSBMiniGame : MonoBehaviour {
 
     public void ResetScreen()
     {
+        // reset the whole screen
         RobotBodyMonitor.SetActive(false);
         RobotEyesMonitor.SetActive(false);
         RobotSpeakerMonitor.SetActive(false);

@@ -23,6 +23,7 @@ public class LevelOnePower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // detect players progression through the level, and update the hints they can recieve
         if (LevelProgression == 0)
         {
             if(!ScrewPanel.activeInHierarchy)

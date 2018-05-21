@@ -28,6 +28,7 @@ public class LeverTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // when lever is pulled, activate timer to open wire box on the back of the transportation tubes for 10 seconds
         if (IsOpen == true)
         {
             if (timerProgress >= 0.1)

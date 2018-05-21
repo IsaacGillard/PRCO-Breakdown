@@ -7,6 +7,7 @@ public class SaveLoadManager : MonoBehaviour
 
     public void SaveGame()
     {
+        // save player progression 
         PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
         PlayerPrefs.Save();
         Debug.Log("Saved");

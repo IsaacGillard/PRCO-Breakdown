@@ -9,6 +9,7 @@ public class LevelComplete : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
+            // if the player is inside elevator, go to next level
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

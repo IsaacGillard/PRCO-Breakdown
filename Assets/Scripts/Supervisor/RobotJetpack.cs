@@ -44,6 +44,7 @@ public class RobotJetpack : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
+        // reduce max force over time
         if (Input.GetKey(KeyCode.Space) && MaxForce > 0)
         {
             MaxForce -= Time.deltaTime;
@@ -60,7 +61,7 @@ public class RobotJetpack : MonoBehaviour {
 
         if (MaxForce < 0 && currentForce > 0)
         {
-            
+            // start falling if no force left
             currentForce -= Time.deltaTime;
         }
 
@@ -95,7 +96,7 @@ public class RobotJetpack : MonoBehaviour {
 
     public void UseJetPack()
     {
-
+        // fly using jetpack
         if(FPC.m_Jump)
         {
             FPC.m_Jump = false;

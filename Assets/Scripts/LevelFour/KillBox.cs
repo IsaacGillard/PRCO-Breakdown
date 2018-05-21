@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class KillBox : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private GameObject GameOverScreen;
+
+    [SerializeField]
+    private GameObject DeathMessage;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -13,4 +19,18 @@ public class KillBox : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            // fail level if player enters collider
+            GameOverScreen.SetActive(true);
+            DeathMessage.SetActive(true);
+
+        }
+        
+    }
+
+    
 }

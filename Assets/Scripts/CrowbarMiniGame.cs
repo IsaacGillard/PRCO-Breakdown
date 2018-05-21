@@ -32,7 +32,7 @@ public class CrowbarMiniGame : MonoBehaviour {
     void Update () {
 
         Player.GetComponent<FirstPersonController>().enabled = false;
-
+        // timer for minigame
         if (timerProgress >= 0.1)
         {
             timerProgress -= Time.deltaTime;
@@ -43,7 +43,7 @@ public class CrowbarMiniGame : MonoBehaviour {
             CrowbarMiniGameFailed();
         }
 
-
+        // run through arrow sliders until player completes minigame
         if (sliderOne.enabled)
         { 
             progress = sliderOne.value;
@@ -96,6 +96,7 @@ public class CrowbarMiniGame : MonoBehaviour {
 
     public void CrowbarMiniGameCompleted()
     {
+        // complete minigame
         AudioManager.GetComponent<AudioManager>().Play("CrowbarTwo");
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
@@ -104,13 +105,14 @@ public class CrowbarMiniGame : MonoBehaviour {
 
     public void CrowbarMiniGameFailed()
     {
+        // fail minigame
         CrowbarScreen.SetActive(false);
         Player.GetComponent<FirstPersonController>().enabled = true;
         EventSystem.GetComponent<SupervisorOpinion>().ReduceOpinion(2);
     }
 
     public void Reset()
-    {
+    {// reset minigame
         progress = 0f;
         sliderOne.value = 0;
         sliderTwo.value = 0;

@@ -6,6 +6,8 @@ public class RaycastMaterialChange : MonoBehaviour {
 
     public Material[] material;
 
+    // currently not working
+
     public void OnHoverOver (GameObject target)
     {
         target.GetComponent<Renderer>().material = material[0];

@@ -64,6 +64,7 @@ public class PersonalityMonitor : MonoBehaviour {
 
     public void CommitPersonality()
     {
+        // add personality to completed robot statistics, and spawn the next robot in the array
         if (PersonalityCapsule.GetComponent<LevelFourSpawner>().bodyInLocation == true)
         {
             CommitedPersonality = Personality[currentPersonality];

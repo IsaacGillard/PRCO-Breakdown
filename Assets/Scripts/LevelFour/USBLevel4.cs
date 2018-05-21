@@ -33,6 +33,8 @@ public class USBLevel4 : MonoBehaviour
         monitorReferenceNumber = PlayerRaycast.GetComponent<Raycast>().monitorReference;
         Debug.Log(monitorReferenceNumber);
 
+        // depending on monitor reference number form USBStats script, show the appropriate monitor
+
         if (monitorReferenceNumber == 1)
         {
             PersonalityMonitor.SetActive(true);
@@ -51,6 +53,7 @@ public class USBLevel4 : MonoBehaviour
 
     public void ResetScreen()
     {
+        // reset the screen
         PersonalityMonitor.SetActive(false);
         PaintJobMonitor.SetActive(false);
         NoRobotInCapsule.SetActive(false);

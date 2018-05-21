@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 [System.Serializable]
 public class Sound {
 
+    // sound class to be used with audio manager
+
     public string name;
 
     public GameObject SourceOfSound;

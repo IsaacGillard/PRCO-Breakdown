@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Paintedrobot : MonoBehaviour {
 
+    
+
     public string[] RobotStats;
     public Material[] PaintJobs;
 
@@ -26,6 +28,7 @@ public class Paintedrobot : MonoBehaviour {
     }
 
     public void PaintRobot() { 
+        // paint robot depending on players choice
     
         if (RobotStats[1] == "Overalls")
         {

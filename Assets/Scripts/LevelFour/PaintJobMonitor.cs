@@ -64,6 +64,7 @@ public class PaintJobMonitor : MonoBehaviour {
 
     public void CommitPaintJob()
     {
+        // commit current paint job and add value to finished robots statistics
         if (PaintJobCapsule.GetComponent<LevelFourSpawner>().bodyInLocation == true)
         {
             CommitedPaintJob = PaintJob[currentPaintJob];

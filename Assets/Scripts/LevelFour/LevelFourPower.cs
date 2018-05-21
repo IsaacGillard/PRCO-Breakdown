@@ -5,6 +5,12 @@ using UnityEngine;
 public class LevelFourPower : MonoBehaviour {
 
     [SerializeField]
+    private GameObject AudioManager;
+
+    [SerializeField]
+    private GameObject EventSystem;
+
+    [SerializeField]
     private GameObject[] Tubes;
 
     [SerializeField]
@@ -19,6 +25,7 @@ public class LevelFourPower : MonoBehaviour {
 		
 	}
 
+    // check if all tubes have been successfully completed
     public void CheckAllTubes()
     {
         bool allActive = true;

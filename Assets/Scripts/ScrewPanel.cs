@@ -13,6 +13,7 @@ public class ScrewPanel : MonoBehaviour {
     {
         for (int i = 0; i < Screws.Length; i++ )
         {
+            // if all screws attached to panel have been removed, remove the panel
             if (Screws[i].activeInHierarchy)
             {
                 allInActive = false;
@@ -26,7 +27,6 @@ public class ScrewPanel : MonoBehaviour {
 
         if (allInActive == true)
         {
-            //EventSystem.GetComponent<LevelProgression>().UpdateProgression();
             Panel.SetActive(false);
         }
     }

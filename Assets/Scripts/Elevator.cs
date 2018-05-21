@@ -41,6 +41,7 @@ public class Elevator : MonoBehaviour {
 
         if(levelComplete == true)
         {
+            // open elevator doors
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= lerpTime)
             {

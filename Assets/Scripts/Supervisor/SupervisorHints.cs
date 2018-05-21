@@ -28,8 +28,7 @@ public class SupervisorHints : MonoBehaviour {
     {
         EventSystem.GetComponent<SupervisorOpinion>().ReduceOpinion(2);
  
-        //int rand = Random.Range(0, levelHints.Length);
-
+        // depending on level progression, play the appropriate hint
         levelProgression = EventSystem.GetComponent<LevelProgression>().progression;
 
         if(levelProgression == 0)
@@ -45,7 +44,6 @@ public class SupervisorHints : MonoBehaviour {
             AudioManager.GetComponent<AudioManager>().Play("HintThree");
         }
 
-        //Debug.Log(levelHints[levelProgression]);
 
     }
 }

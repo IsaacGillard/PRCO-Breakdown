@@ -36,7 +36,7 @@ public class WiresMiniGame : MonoBehaviour {
     void Update () {
 
         brokenWire = PlayerRaycast.GetComponent<Raycast>().brokenWire;
-
+        //timer
         if (timerProgress >= 0.1)
         {
             timerProgress -= Time.deltaTime;
@@ -46,6 +46,8 @@ public class WiresMiniGame : MonoBehaviour {
         {
             WiresMiniGameFailed();
         }
+
+        // depending on broken wire, listen for correct button input, ales fail minigame
 
         if (Input.GetKeyDown("r"))
         {

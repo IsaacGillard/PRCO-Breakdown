@@ -29,15 +29,11 @@ public class PlayerSwap : MonoBehaviour {
         {
             robotMesh.SetActive(false);
         }
-        //if (Input.GetKeyDown("k"))
-        //{
-        //    SwapPlayer();
-        //}
 	}
 
     public void SwapPlayer()
     {
-        Debug.Log("Woop");
+        // swap between players
         CharactersIndex++;
         if (CharactersIndex == characters.Length)
         {

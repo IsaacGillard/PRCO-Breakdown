@@ -81,6 +81,7 @@ public class RobotTesting : MonoBehaviour {
 
     public void TestRobot()
     {
+        // test the robot, checking if all modifications are correct
         TestingScreen.SetActive(true);
         StartScreen.SetActive(false);
         EyeTest();

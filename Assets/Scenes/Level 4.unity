@@ -21032,6 +21032,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000772646380328, guid: f27b2a18197eac34290e283929fd65e0,
+        type: 2}
+      propertyPath: AudioManager
+      value: 
+      objectReference: {fileID: 1058320212}
+    - target: {fileID: 114000772646380328, guid: f27b2a18197eac34290e283929fd65e0,
+        type: 2}
+      propertyPath: EventSystem
+      value: 
+      objectReference: {fileID: 1897611092}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f27b2a18197eac34290e283929fd65e0, type: 2}
   m_IsPrefabParent: 0
